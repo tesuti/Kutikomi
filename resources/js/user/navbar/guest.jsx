@@ -1,25 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-function Example() {
+function Guest() {
     const login = () =>{
         window.location.replace("/login")
     }
     const register = () =>{
         window.location.replace("/register")
     }
-    const admin = () =>{
-        window.location.replace("admin/login")
-    }
     return (
     <>
     <button
         onClick={login}
         className="nav-link">login
-    </button>
-    <button
-        onClick={admin}
-        className="nav-link">管理者
     </button>
     <button
         onClick={register}
@@ -29,8 +22,5 @@ function Example() {
     );
 }
 
-export default Example;
+export default Guest;
 
-if (document.getElementById('example')) {
-    ReactDOM.render(<Example />, document.getElementById('example'));
-}

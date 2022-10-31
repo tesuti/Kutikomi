@@ -24,7 +24,7 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/admin/dashboard', function () {
+Route::get('/admin', function () {
     return view('admin');
 });
 

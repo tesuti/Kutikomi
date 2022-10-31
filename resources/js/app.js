@@ -12,5 +12,5 @@ import './bootstrap';
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-import './components/Example';
-import './admin/Admin';
+import './User';
+import './Admin';

@@ -13,7 +13,7 @@
         <!-- Styles -->
     </head>
     <body class="antialiased">
-        <div id="example">
+        <div id="user">
 
         </div>
     </body>
