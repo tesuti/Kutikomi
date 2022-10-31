@@ -1,5 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { Routes, Route, Link } from 'react-router-dom';
+import Home from '../home';
 
 function Guest() {
     const login = () =>{
@@ -10,14 +11,24 @@ function Guest() {
     }
     return (
     <>
-    <button
-        onClick={login}
-        className="nav-link">login
-    </button>
-    <button
-        onClick={register}
-        className="nav-link">register
-    </button>
+        <ul className="hidden md:flex ">
+            <li>
+                <Link className='no-underline' to="/">Home</Link>
+            </li>
+            <button
+                onClick={login}
+                className="nav-link">login
+            </button>
+            <button
+                onClick={register}
+                className="nav-link">register
+            </button>
+        </ul>
+        <div className="">
+            <Routes>
+                <Route path="/" element={<Home />} />
+            </Routes>
+        </div>
     </>
     );
 }

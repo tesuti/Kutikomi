@@ -1,14 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Index from './user/index'
+import { BrowserRouter } from 'react-router-dom';
 
 function User() {
-    const login = () =>{
-        window.location.replace("/login")
-    }
-    const register = () =>{
-        window.location.replace("/register")
-    }
+    // const login = () =>{
+    //     window.location.replace("/login")
+    // }
+    // const register = () =>{
+    //     window.location.replace("/register")
+    // }
     return (
         <BrowserRouter>
         <Index />
