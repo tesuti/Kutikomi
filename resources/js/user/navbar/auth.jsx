@@ -1,14 +1,16 @@
-import React from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { Routes, Route, Link, useNavigate } from 'react-router-dom';
 import Home from '../home';
 
 
 function Auth() {
-    const login = () =>{
-        window.location.replace("/login")
-    }
-    const register = () =>{
-        window.location.replace("/register")
+
+    const logoutUser = (e)=>{
+        e.preventDefault();
+        axios.post('/logout').then((res)=>{
+            window.location.reload();
+        })
     }
     return (
     <>
@@ -16,6 +18,9 @@ function Auth() {
             ログイン済み
             <li>
                 <Link className='no-underline' to="/">Home</Link>
+            </li>
+            <li>
+                <button className="btn" onClick={logoutUser}>Logout</button>
             </li>
 
         </ul>
