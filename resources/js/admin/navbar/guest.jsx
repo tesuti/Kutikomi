@@ -1,13 +1,14 @@
 import React from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
-import Home from '../home';
+import Home from '../pages/home';
+
 
 function Guest() {
     const register = () =>{
-        window.location.replace("admin/register")
+        window.location.replace("/admin/register")
     }
     const admin = () =>{
-        window.location.replace("admin/login")
+        window.location.replace("/admin/login")
     }
     return (
         <>

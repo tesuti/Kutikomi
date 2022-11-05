@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Routes, Route, Link } from 'react-router-dom';
-import Home from '../home';
-
+import Home from '../pages/home';
+import Post from '../pages/post';
 
 function Auth() {
 
@@ -16,7 +16,10 @@ function Auth() {
         <ul className="hidden md:flex ">
             ログイン済みadmin
             <li>
-                <Link className='no-underline' to="/">Home</Link>
+                <Link className='no-underline' to="/admin">Home</Link>
+            </li>
+            <li>
+                <Link className='no-underline' to="/admin/post">記事の投稿</Link>
             </li>
             <li>
                 <button className="btn" onClick={logoutUser}>Logout</button>
@@ -25,7 +28,8 @@ function Auth() {
         </ul>
         <div className="">
             <Routes>
-                <Route path="/" element={<Home />} />
+                <Route path="/admin" element={<Home />} />
+                <Route path="/admin/post" element={<Post />} />
             </Routes>
         </div>
     </>

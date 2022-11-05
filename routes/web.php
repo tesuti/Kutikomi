@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,4 +39,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('me', [AuthController::class,'me'])->middleware(['auth']);
 Route::get('admin/me', [AdminController::class,'me'])->middleware(['auth:admin']);
+
+Route::resource('post',Controllers\PostController::class);
 
