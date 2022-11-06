@@ -7,7 +7,7 @@ export default function View(props){
     const [inputs, setInputs] = useState({});
     const [comment, setComment] = useState("");
     const [rating, setRating] = useState("");
-    const [co, setco] = useState([]);
+    const [commentField, setCommentField] = useState([]);
     const {id} = useParams();
     const data = {
         comment: comment,
@@ -36,7 +36,7 @@ export default function View(props){
     const fetchComment = () =>{
          axios.get('/comment/'+ id).then((res)=>{
 
-            setco(
+            setCommentField(
                 res.data
             );
             console.log(co);
@@ -70,15 +70,12 @@ export default function View(props){
         <div>
 
         <div>
-        {co.map((co, i)=>(
-
-                <div key={i}>
-                    <p>{++i}</p>
-                    <p>{ co.rating}</p>
-         <p>{ co.comment}</p>
-
-                </div>
-
+        {commentField.map((commentField, i)=>(
+            <div key={i}>
+                <p>{++i}</p>
+                <p>{ commentField.rating}</p>
+                <p>{ commentField.comment}</p>
+            </div>
         ))}
     </div>
 
