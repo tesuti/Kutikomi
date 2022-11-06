@@ -1,0 +1,91 @@
+import axios from "axios";
+import { comment } from "postcss";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+export default function View(props){
+
+    const [inputs, setInputs] = useState({});
+    const [comment, setComment] = useState("");
+    const [rating, setRating] = useState("");
+    const [co, setco] = useState([]);
+    const {id} = useParams();
+    const data = {
+        comment: comment,
+        rating: rating,
+        id:id,
+    };
+    const submitForm = (e)=>{
+        e.preventDefault();
+        axios.post('/comment',data).then((res)=>{
+        })
+    }
+
+    useEffect(() =>{
+        fetchPost();
+        fetchComment();
+    },[]);
+
+    const fetchPost = () =>{
+         axios.get('/post/' +id+ '/edit').then((res)=>{
+            setInputs({
+                title:res.data.title,
+                body:res.data.body,
+            });
+        });
+    }
+    const fetchComment = () =>{
+         axios.get('/comment/'+ id).then((res)=>{
+
+            setco(
+                res.data
+            );
+            console.log(co);
+        });
+    }
+
+    return(
+        <div>
+            <section className="pt-12 sm:pt-20 text-black">
+            <p>{ inputs.title }</p>
+            <p>{ inputs.body }</p>
+            </section>
+
+        <div>
+        <h2>記事を作成</h2>
+        <label>コメント</label>
+        <input type="text" name='comment' className=''
+        value={comment || ''}
+        onChange={(e) => setComment(e.target.value)}
+        />
+
+        <label>評価</label>
+        <input type="text" name='rating' className=''
+        value={rating || ''}
+        onChange={(e) => setRating(e.target.value)}
+        />
+
+        <button type='button' onClick={submitForm}>登録</button>
+        </div>
+
+        <div>
+
+        <div>
+        {co.map((co, i)=>(
+
+                <div key={i}>
+                    <p>{++i}</p>
+                    <p>{ co.rating}</p>
+         <p>{ co.comment}</p>
+
+                </div>
+
+        ))}
+    </div>
+
+
+
+
+        </div>
+        </div>
+    )
+}

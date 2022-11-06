@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Post;
 use App\Models\Comment;
 
-class PostController extends Controller
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        return response()->json(Post::latest()->get());
+
     }
 
     /**
@@ -25,7 +24,7 @@ class PostController extends Controller
      */
     public function create()
     {
-
+        //
     }
 
     /**
@@ -36,9 +35,11 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        Post::create([
-            'title'=>$request->title,
-            'body'=>$request->body,
+        Comment::create([
+            'comment'=>$request->comment,
+            'rating'=>$request->rating,
+            'post_id'=>$request->id,
+            'user_id'=> auth()->user()->id,
         ]);
         return response()->json('successfully created');
     }
@@ -51,7 +52,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-//
+        $comment=Comment::where('post_id', '=', $id)->get();
+        return response()->json($comment);
     }
 
     /**
@@ -62,7 +64,7 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        return response()->json(Post::whereId($id)->first());
+//
     }
 
     /**

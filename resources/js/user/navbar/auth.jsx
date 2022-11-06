@@ -1,7 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Routes, Route, Link, useNavigate } from 'react-router-dom';
-import Home from '../home';
+import Home from '../pages/home';
+import View from '../pages/view';
 
 
 function Auth() {
@@ -27,6 +28,7 @@ function Auth() {
         <div className="">
             <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path='/view/:id' element={<View />} />
             </Routes>
         </div>
     </>

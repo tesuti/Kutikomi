@@ -41,4 +41,5 @@ Route::get('me', [AuthController::class,'me'])->middleware(['auth']);
 Route::get('admin/me', [AdminController::class,'me'])->middleware(['auth:admin']);
 
 Route::resource('post',Controllers\PostController::class);
+Route::resource('comment',Controllers\CommentController::class);
 

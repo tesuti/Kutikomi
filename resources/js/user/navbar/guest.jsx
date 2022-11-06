@@ -1,6 +1,7 @@
 import React from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
-import Home from '../home';
+import Home from '../pages/home';
+import View from '../pages/view'
 
 function Guest() {
     const login = () =>{
@@ -27,6 +28,7 @@ function Guest() {
         <div className="">
             <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path='/view/:id' element={<View />} />
             </Routes>
         </div>
     </>
