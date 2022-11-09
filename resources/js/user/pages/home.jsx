@@ -24,6 +24,7 @@ function home() {
                     <p>{++i}</p>
                     <p>{ posts.title}</p>
                     <p>{ posts.body}</p>
+                    <p>{ posts.comments.rating}</p>
                     </Link>
                 </div>
 

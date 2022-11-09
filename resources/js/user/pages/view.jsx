@@ -70,11 +70,13 @@ export default function View(props){
         <div>
 
         <div>
-        {commentField.map((commentField, i)=>(
-            <div key={i}>
-                <p>{++i}</p>
+        {commentField.map((commentField)=>(
+            <div key={commentField.id}>
+                <p>{ commentField.user.name}</p>
                 <p>{ commentField.rating}</p>
                 <p>{ commentField.comment}</p>
+
+                <p>------</p>
             </div>
         ))}
     </div>
