@@ -2,6 +2,8 @@ import axios from "axios";
 import { comment } from "postcss";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { FaStar } from 'react-icons/fa';
+
 export default function View(props){
 
     const [inputs, setInputs] = useState({});
@@ -26,7 +28,7 @@ export default function View(props){
     },[]);
 
     const fetchPost = () =>{
-         axios.get('/post/' +id+ '/edit').then((res)=>{
+        axios.get('/post/' +id+ '/edit').then((res)=>{
             setInputs({
                 title:res.data.title,
                 body:res.data.body,
@@ -34,7 +36,7 @@ export default function View(props){
         });
     }
     const fetchComment = () =>{
-         axios.get('/comment/'+ id).then((res)=>{
+        axios.get('/comment/'+ id).then((res)=>{
 
             setCommentField(
                 res.data
@@ -46,8 +48,8 @@ export default function View(props){
     return(
         <div>
             <section className="pt-12 sm:pt-20 text-black">
-            <p>{ inputs.title }</p>
-            <p>{ inputs.body }</p>
+                <p>{ inputs.title }</p>
+                <p>{ inputs.body }</p>
             </section>
 
         <div>
