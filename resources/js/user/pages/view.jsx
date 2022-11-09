@@ -1,14 +1,15 @@
 import axios from "axios";
-import { comment } from "postcss";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FaStar } from 'react-icons/fa';
+import './App.css';
 
 export default function View(props){
 
     const [inputs, setInputs] = useState({});
     const [comment, setComment] = useState("");
     const [rating, setRating] = useState("");
+
     const [commentField, setCommentField] = useState([]);
     const {id} = useParams();
     const data = {
@@ -16,6 +17,9 @@ export default function View(props){
         rating: rating,
         id:id,
     };
+
+    let total_rating = 0;
+    let abc = 0;
     const submitForm = (e)=>{
         e.preventDefault();
         axios.post('/comment',data).then((res)=>{
@@ -41,8 +45,8 @@ export default function View(props){
             setCommentField(
                 res.data
             );
-            console.log(co);
         });
+
     }
 
     return(
@@ -50,6 +54,42 @@ export default function View(props){
             <section className="pt-12 sm:pt-20 text-black">
                 <p>{ inputs.title }</p>
                 <p>{ inputs.body }</p>
+            {commentField.reduce((total,commentFields,total_comment)=>{
+            total_rating += commentFields.rating;
+            {++total_comment}
+            //星の平均値
+            const average = total_rating / total_comment;
+
+            // const comment_total = i;
+        return(
+            <>
+            {[...Array(5)].map((star, i) => {
+
+        const ratingValue = i + 1
+
+        return (
+        <label key={i}>
+            <input
+            type="radio"
+            name="rating"
+            value={ratingValue}
+            />
+            <FaStar
+            className="star"
+            color={ratingValue <= (Math.ceil(average))  ? "#ffc107" : "#e4e5e9"}
+            size={20}
+            />
+        </label>
+        );
+
+        })}
+
+
+            <p>平均値：{Math.ceil(average)}</p>
+            <p>コメント数{total_comment}</p>
+            </>
+        );
+        },0)}
             </section>
 
         <div>
@@ -72,10 +112,33 @@ export default function View(props){
         <div>
 
         <div>
-        {commentField.map((commentField)=>(
+        {commentField.map((commentField,i)=>(
+
             <div key={commentField.id}>
+                <p>{ ++i}</p>
                 <p>{ commentField.user.name}</p>
-                <p>{ commentField.rating}</p>
+                {[...Array(5)].map((star,i) => {
+
+                    const ratingValue = i + 1
+
+                    return (
+                        <label key={i}>
+                            <input
+                            type="radio"
+                            name="rating"
+                            value={ratingValue}
+                            className="hidden"
+                            />
+                            <FaStar
+                            className="star"
+                            color={ratingValue <= (commentField.rating) ? "#ffc107" : "#e4e5e9"}
+                            size={20}
+                            />
+                        </label>
+                    )
+
+                })}
+
                 <p>{ commentField.comment}</p>
 
                 <p>------</p>
