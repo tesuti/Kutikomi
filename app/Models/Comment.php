@@ -30,7 +30,7 @@ class Comment extends Model
      * @return string
     */
     protected $with = ['user','posts'];
-    // protected $with = ['posts'];
+
     public function user()
     {
         return $this->belongsTo(User::class,'user_id');

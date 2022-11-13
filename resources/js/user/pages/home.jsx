@@ -4,11 +4,9 @@ import { Link } from "react-router-dom";
 
 function home() {
     const [posts, setPosts] = useState([]);
-    const [commentField, setCommentField] = useState([]);
 
     useEffect(() =>{
         fetchAllPost();
-        fetchAllComment();
     },[]);
 
     const fetchAllPost = async() =>{
@@ -16,11 +14,7 @@ function home() {
             setPosts(res.data);
         })
     }
-    const fetchAllComment = async() =>{
-        await axios.get('/comment').then(res=>{
-            setCommentField(res.data);
-        })
-    }
+    console.log(posts);
 
     return (
     <div>
@@ -28,20 +22,16 @@ function home() {
 
                 <div key={i}>
                     <Link to={{ pathname :"/view/"+posts.id }}>
-                    <p>{++i}</p>
-                    <p>{ posts.title}</p>
-                    <p>{ posts.body}</p>
+                    {++i}
+                    { posts.title}
+                    { posts.body}
+                    <p>{ posts.comments.comment}</p>
+                    <p>{ posts.comments.rating}</p>
                     </Link>
                 </div>
 
         ))}
-{/* {commentField.map((comment,i)=>(
-<>
-{++i}
-<input type="text" />
-<p>{ comment.post_id}</p>
-        </>
-        ))} */}
+
     </div>
     )
 }
