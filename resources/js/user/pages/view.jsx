@@ -58,9 +58,8 @@ export default function View(props){
             total_rating += commentFields.rating;
             {++total_comment}
             //星の平均値
-            const average = total_rating / total_comment;
+            const average= total_rating / total_comment;
 
-            // const comment_total = i;
         return(
             <>
             {[...Array(5)].map((star, i) => {
