@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Comment;
-use App\Models\Rating;
 
-class CommentController extends Controller
+class RatingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +13,7 @@ class CommentController extends Controller
      */
     public function index()
     {
-        return response()->json(Comment::latest()->get());
+        //
     }
 
     /**
@@ -36,19 +34,7 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        Comment::create([
-            'comment'=>$request->comment,
-            'rating'=>$request->rating,
-            'post_id'=>$request->id,
-            'user_id'=> auth()->user()->id,
-        ]);
-        // Rating::create([
-        //     'post_id'=>$request->id,
-        //     'rating_avg'=>$request->rating_avg,
-        //     'comment_avg'=>$request->comment_avg,
-        // ]);
-
-        return response()->json('successfully created');
+        //
     }
 
     /**
@@ -59,9 +45,7 @@ class CommentController extends Controller
      */
     public function show($id)
     {
-        $comment=Comment::where('post_id', '=', $id)->get();
-
-        return response()->json($comment);
+        //
     }
 
     /**
@@ -72,7 +56,7 @@ class CommentController extends Controller
      */
     public function edit($id)
     {
-//
+        //
     }
 
     /**

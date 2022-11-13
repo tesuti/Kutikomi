@@ -40,6 +40,7 @@ class PostController extends Controller
             'title'=>$request->title,
             'body'=>$request->body,
         ]);
+
         return response()->json('successfully created');
     }
 

@@ -4,14 +4,21 @@ import { Link } from "react-router-dom";
 
 function home() {
     const [posts, setPosts] = useState([]);
+    const [commentField, setCommentField] = useState([]);
 
     useEffect(() =>{
         fetchAllPost();
+        fetchAllComment();
     },[]);
 
     const fetchAllPost = async() =>{
         await axios.get('/post').then(res=>{
             setPosts(res.data);
+        })
+    }
+    const fetchAllComment = async() =>{
+        await axios.get('/comment').then(res=>{
+            setCommentField(res.data);
         })
     }
 
@@ -28,6 +35,13 @@ function home() {
                 </div>
 
         ))}
+{/* {commentField.map((comment,i)=>(
+<>
+{++i}
+<input type="text" />
+<p>{ comment.post_id}</p>
+        </>
+        ))} */}
     </div>
     )
 }

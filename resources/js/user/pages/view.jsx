@@ -10,21 +10,24 @@ export default function View(props){
     const [comment, setComment] = useState("");
     const [rating, setRating] = useState("");
 
+
     const [commentField, setCommentField] = useState([]);
     const {id} = useParams();
     const data = {
         comment: comment,
         rating: rating,
         id:id,
+
     };
 
     let total_rating = 0;
-    let abc = 0;
+
     const submitForm = (e)=>{
         e.preventDefault();
         axios.post('/comment',data).then((res)=>{
         })
     }
+
 
     useEffect(() =>{
         fetchPost();
@@ -47,6 +50,7 @@ export default function View(props){
             );
         });
 
+
     }
 
     return(
@@ -59,6 +63,7 @@ export default function View(props){
             {commentField.reduce((total,commentFields,total_comment)=>{
             total_rating += commentFields.rating;
             {++total_comment}
+
             //星の平均値
             const average= total_rating / total_comment;
 
@@ -85,14 +90,12 @@ export default function View(props){
 
         })}
 
-
             <p>平均値：{Math.ceil(average)}</p>
             <p>コメント数{total_comment}</p>
             {/* <p>コメント数{commentFields.posts.title}</p> */}
             </>
         );
         },0)}
-
 
             </section>
 
