@@ -29,14 +29,15 @@ class Comment extends Model
      *
      * @return string
     */
-    protected $with = ['user'];
+    protected $with = ['user','posts'];
+    // protected $with = ['posts'];
     public function user()
     {
         return $this->belongsTo(User::class,'user_id');
     }
     public function posts()
     {
-        return $this->belongsTo(Post::class,'id','post_id');
+        return $this->belongsTo(Post::class,'post_id','id');
     }
 
     /**

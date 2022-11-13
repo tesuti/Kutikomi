@@ -53,6 +53,7 @@ class CommentController extends Controller
     public function show($id)
     {
         $comment=Comment::where('post_id', '=', $id)->get();
+
         return response()->json($comment);
     }
 

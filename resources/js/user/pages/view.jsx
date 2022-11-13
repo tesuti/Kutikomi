@@ -54,6 +54,8 @@ export default function View(props){
             <section className="pt-12 sm:pt-20 text-black">
                 <p>{ inputs.title }</p>
                 <p>{ inputs.body }</p>
+
+
             {commentField.reduce((total,commentFields,total_comment)=>{
             total_rating += commentFields.rating;
             {++total_comment}
@@ -86,9 +88,12 @@ export default function View(props){
 
             <p>平均値：{Math.ceil(average)}</p>
             <p>コメント数{total_comment}</p>
+            {/* <p>コメント数{commentFields.posts.title}</p> */}
             </>
         );
         },0)}
+
+
             </section>
 
         <div>
@@ -116,6 +121,7 @@ export default function View(props){
             <div key={commentField.id}>
                 <p>{ ++i}</p>
                 <p>{ commentField.user.name}</p>
+                {/* <p>{ commentField.posts.id}</p> */}
                 {[...Array(5)].map((star,i) => {
 
                     const ratingValue = i + 1

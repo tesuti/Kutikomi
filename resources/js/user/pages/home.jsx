@@ -20,11 +20,10 @@ function home() {
         {posts.map((posts, i)=>(
 
                 <div key={i}>
-                     <Link to={{ pathname :"/view/"+posts.id }}>
+                    <Link to={{ pathname :"/view/"+posts.id }}>
                     <p>{++i}</p>
                     <p>{ posts.title}</p>
                     <p>{ posts.body}</p>
-                    <p>{ posts.comments.rating}</p>
                     </Link>
                 </div>
 

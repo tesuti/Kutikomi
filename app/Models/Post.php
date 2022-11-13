@@ -19,7 +19,6 @@ class Post extends Model
      *
      * @return string
     */
-    protected $with = ['comments'];
     public function comments()
     {
         return $this->hasMany(Comment::class,'post_id', 'id')->whereNull('parent_id');
