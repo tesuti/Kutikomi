@@ -12,14 +12,13 @@ class Post extends Model
 
     protected $dates = ['deleted_at'];
 
-    protected $fillable = ['title', 'body'];
+    protected $fillable = ['id','title', 'body','rating'];
 
     /**
      * Write Your Code..
      *
      * @return string
     */
-    // protected $with = ['comments'];
     public function comments()
     {
         return $this->hasMany(Comment::class,'post_id', 'id')->whereNull('parent_id');
