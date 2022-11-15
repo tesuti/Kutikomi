@@ -14,22 +14,18 @@ function home() {
             setPosts(res.data);
         })
     }
-    console.log(posts);
+
 
     return (
     <div>
-        {posts.map((posts, i)=>(
-
+        {posts.map((post, i)=>(
                 <div key={i}>
-                    <Link to={{ pathname :"/view/"+posts.id }}>
+                    <Link to={{ pathname :"/view/"+post.posts.id }}>
                     {++i}
-                    { posts.title}
-                    { posts.body}
-                    <p>{ posts.comments.comment}</p>
-                    <p>{ posts.comments.rating}</p>
+
+                        <p>{ post.title}</p>
                     </Link>
                 </div>
-
         ))}
 
     </div>

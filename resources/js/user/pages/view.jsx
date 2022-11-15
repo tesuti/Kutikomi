@@ -10,6 +10,8 @@ export default function View(props){
     const [comment, setComment] = useState("");
     const [rating, setRating] = useState("");
 
+    const [rating_avg, setRating_avg] = useState("");
+    const [comment_avg, setComment_avg] = useState("");
 
     const [commentField, setCommentField] = useState([]);
     const {id} = useParams();
@@ -17,10 +19,12 @@ export default function View(props){
         comment: comment,
         rating: rating,
         id:id,
-
+        comment_avg:comment_avg,
+        rating_avg:rating_avg,
     };
 
     let total_rating = 0;
+
 
     const submitForm = (e)=>{
         e.preventDefault();
@@ -50,7 +54,6 @@ export default function View(props){
             );
         });
 
-
     }
 
     return(
@@ -61,8 +64,10 @@ export default function View(props){
 
 
             {commentField.reduce((total,commentFields,total_comment)=>{
-            total_rating += commentFields.rating;
+            total_rating+= commentFields.rating;
+
             {++total_comment}
+
 
             //星の平均値
             const average= total_rating / total_comment;
@@ -112,6 +117,7 @@ export default function View(props){
         value={rating || ''}
         onChange={(e) => setRating(e.target.value)}
         />
+
 
         <button type='button' onClick={submitForm}>登録</button>
         </div>
