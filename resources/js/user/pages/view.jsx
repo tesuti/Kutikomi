@@ -82,7 +82,7 @@ export default function View(props){
             />
             <FaStar
             className="star"
-            color={ratingValue <= (Math.ceil(average))  ? "#ffc107" : "#e4e5e9"}
+            color={ratingValue <= (Math.floor(average * 100) / 100)  ? "#ffc107" : "#e4e5e9"}
             size={20}
             />
         </label>
@@ -90,9 +90,8 @@ export default function View(props){
 
         })}
 
-            <p>平均値：{Math.ceil(average)}</p>
+            <p>平均値：{Math.floor(average * 100) / 100}</p>
             <p>コメント数{total_comment}</p>
-            {/* <p>コメント数{commentFields.posts.title}</p> */}
             </>
         );
         },0)}

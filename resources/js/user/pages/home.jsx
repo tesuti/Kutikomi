@@ -14,7 +14,7 @@ function home() {
             setPosts(res.data);
         })
     }
-    console.log(posts);
+
 
     return (
     <div>
@@ -25,8 +25,6 @@ function home() {
                     {++i}
                     { posts.posts.title}
                     { posts.comment_avg}
-                    {/* <p>{ posts.comments.comment}</p>
-                    <p>{ posts.comments.rating}</p> */}
                     </Link>
                 </div>
 
