@@ -19,9 +19,10 @@ class CommentController extends Controller
         select('post_id')
         ->selectRaw('ROUND(AVG(rating),2) as comment_avg')
         ->groupBy('post_id')
+        ->orderBy('comment_avg','desc')
         ->get();
-        //   return response()->json(Comment::latest()->get());
-          return response()->json($users);
+
+        return response()->json($users);
     }
 
     /**
