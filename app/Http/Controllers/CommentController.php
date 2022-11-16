@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Comment;
 use App\Models\Rating;
-
 class CommentController extends Controller
 {
     /**
@@ -15,7 +14,14 @@ class CommentController extends Controller
      */
     public function index()
     {
-        return response()->json(Comment::latest()->get());
+
+        $users = Comment::
+        select('post_id')
+        ->selectRaw('ROUND(AVG(rating),2) as comment_avg')
+        ->groupBy('post_id')
+        ->get();
+        //   return response()->json(Comment::latest()->get());
+          return response()->json($users);
     }
 
     /**

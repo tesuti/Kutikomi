@@ -124,7 +124,6 @@ export default function View(props){
             <div key={commentField.id}>
                 <p>{ ++i}</p>
                 <p>{ commentField.user.name}</p>
-                {/* <p>{ commentField.posts.id}</p> */}
                 {[...Array(5)].map((star,i) => {
 
                     const ratingValue = i + 1

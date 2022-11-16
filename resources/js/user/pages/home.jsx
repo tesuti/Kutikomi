@@ -10,7 +10,7 @@ function home() {
     },[]);
 
     const fetchAllPost = async() =>{
-        await axios.get('/post').then(res=>{
+        await axios.get('/comment').then(res=>{
             setPosts(res.data);
         })
     }
@@ -21,12 +21,12 @@ function home() {
         {posts.map((posts, i)=>(
 
                 <div key={i}>
-                    <Link to={{ pathname :"/view/"+posts.id }}>
+                    <Link to={{ pathname :"/view/"+posts.posts.id }}>
                     {++i}
-                    { posts.title}
-                    { posts.body}
-                    <p>{ posts.comments.comment}</p>
-                    <p>{ posts.comments.rating}</p>
+                    { posts.posts.title}
+                    { posts.comment_avg}
+                    {/* <p>{ posts.comments.comment}</p>
+                    <p>{ posts.comments.rating}</p> */}
                     </Link>
                 </div>
 
