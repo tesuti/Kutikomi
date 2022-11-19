@@ -14,7 +14,7 @@ function home() {
             setPosts(res.data);
         })
     }
-
+console.log(posts);
 
     return (
     <div>
