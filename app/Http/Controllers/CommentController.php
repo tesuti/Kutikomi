@@ -49,11 +49,6 @@ class CommentController extends Controller
             'post_id'=>$request->id,
             'user_id'=> auth()->user()->id,
         ]);
-        // Rating::create([
-        //     'post_id'=>$request->id,
-        //     'rating_avg'=>$request->rating_avg,
-        //     'comment_avg'=>$request->comment_avg,
-        // ]);
 
         return response()->json('successfully created');
     }
