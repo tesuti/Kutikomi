@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
+// import image from "../../../../storage/app/public/images/a.png"
 
 function home() {
     const [posts, setPosts] = useState([]);
@@ -15,16 +16,18 @@ function home() {
         })
     }
 
-
     return (
     <div>
         {posts.map((posts, i)=>(
-
                 <div key={i}>
                     <Link to={{ pathname :"/view/"+posts.posts.id }}>
                     {++i}
                     { posts.posts.title}
                     { posts.comment_avg}
+                    {/* <img src={`../../../../storage/app/public/images/${posts.posts.photo}`}  alt={posts.posts.photo} /> */}
+                    {/* <img src={image}  alt={posts.posts.photo} /> */}
+                    <img src={ "http://127.0.0.1:5173/storage/app/public/images/" +posts.posts.photo}  alt={posts.posts.photo} width="200px"/>
+
                     </Link>
                 </div>
 
