@@ -19,6 +19,7 @@ class PostController extends Controller
 
     }
 
+
     /**
      * Show the form for creating a new resource.
      *
@@ -37,7 +38,11 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        // hashName()
+        $request->validate([
+            'photo' => 'required',
+            'title' => 'required',
+            'body' => 'required',
+        ]);
         $fileName = $request->file('photo')->getClientOriginalName();
 
         $request->file('photo')->storeAs('images/', $fileName, 'public');

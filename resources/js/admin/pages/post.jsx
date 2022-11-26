@@ -15,7 +15,6 @@ function Post() {
     };
 
     const submitForm = (e) =>{
-        console.log(data);
         e.preventDefault();
         axios.post('/post',data,{
             headers: {
@@ -25,11 +24,9 @@ function Post() {
             vaigate('/admin');
         })
     }
-// console.log(photo);
   return (
     <div>
     <h2>記事を作成</h2>
-    <form encType="multipart/form-data">
     <label>タイトル</label>
     <input type="text" name='title' className=''
     value={title || ''}
@@ -37,7 +34,7 @@ function Post() {
     />
 
     <label>内容</label>
-    <input  type="text" name='body' className=''
+    <textarea  type="text" name='body' className=''
     value={body || ''}
     onChange={(e) => setBody(e.target.value)}
     />
@@ -53,10 +50,8 @@ function Post() {
                 setPhoto( e.target.files[0])
                     }
             />
-
-
     <button type='button' onClick={submitForm}>登録</button>
-    </form>
+
 </div>
 )
 }
