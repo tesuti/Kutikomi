@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
-use App\Models\Comment;
 
 class PostController extends Controller
 {
@@ -19,6 +18,7 @@ class PostController extends Controller
         return response()->json($post);
 
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -38,10 +38,22 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        Post::create([
-            'title'=>$request->title,
-            'body'=>$request->body,
+        $request->validate([
+            'photo' => 'required',
+            'title' => 'required',
+            'body' => 'required',
         ]);
+        $fileName = $request->file('photo')->getClientOriginalName();
+
+        $request->file('photo')->storeAs('images/', $fileName, 'public');
+
+        $test = new Post;
+        $test->title = $request->title;
+        $test->body = $request->body;
+
+        $test->photo = $fileName;
+
+        $test->save();
 
         return response()->json('successfully created');
     }

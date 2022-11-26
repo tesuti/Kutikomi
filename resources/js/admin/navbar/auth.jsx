@@ -11,6 +11,8 @@ function Auth() {
             window.location.reload();
         })
     }
+
+
     return (
     <>
         <ul className="hidden md:flex ">

@@ -6,20 +6,24 @@ function Post() {
     const vaigate = useNavigate();
     const [title, setTitle] = useState("");
     const [body,setBody] = useState("");
+    const [photo,setPhoto] = useState();
 
     const data = {
         title: title,
         body: body,
+        photo:photo,
     };
 
     const submitForm = (e) =>{
         e.preventDefault();
-        axios.post('/post',data).then((res)=>{
+        axios.post('/post',data,{
+            headers: {
+                'content-type': 'multipart/form-data',
+            },
+        }).then((res)=>{
             vaigate('/admin');
         })
     }
-
-
   return (
     <div>
     <h2>記事を作成</h2>
@@ -30,14 +34,26 @@ function Post() {
     />
 
     <label>内容</label>
-    <input type="text" name='body' className=''
+    <textarea  type="text" name='body' className=''
     value={body || ''}
     onChange={(e) => setBody(e.target.value)}
     />
 
+    <label  htmlFor="images">画像</label>
+        <input
+            accept="image/* .png .jpg .jpeg"
+            multiple
+            type="file"
+            id='photo'
+            name="photo"
+            onChange={(e) =>
+                setPhoto( e.target.files[0])
+                    }
+            />
     <button type='button' onClick={submitForm}>登録</button>
+
 </div>
-  )
+)
 }
 
 export default Post

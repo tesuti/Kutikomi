@@ -9,10 +9,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Post extends Model
 {
     use HasFactory,SoftDeletes;
-
     protected $dates = ['deleted_at'];
 
-    protected $fillable = ['title', 'body'];
+    protected $fillable = ['title', 'body','photo'];
 
     /**
      * Write Your Code..
