@@ -16,15 +16,15 @@ function Guest() {
 
     <ul className="hidden md:flex ">
             <li>
-                <Link className='no-underline' to="/">Home</Link>
+                <Link className='' to="/">Home</Link>
             </li>
             <button
                 onClick={admin}
-                className="nav-link">管理者
+                className="">管理者
             </button>
             <button
                 onClick={register}
-                className="nav-link">register
+                className="">register
             </button>
     </ul>
         <div className="">

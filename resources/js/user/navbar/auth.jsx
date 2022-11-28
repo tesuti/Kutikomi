@@ -45,10 +45,10 @@ function Auth() {
         <ul className="hidden md:flex ">
             ログイン済み
             <li>
-                <Link className='no-underline' to="/">ホーム</Link>
+                <Link className='' to="/">ホーム</Link>
             </li>
             <li>
-                <Link className='no-underline' to="/rating">ランキング</Link>
+                <Link className='' to="/rating">ランキング</Link>
             </li>
             <li>
                 <input type="search" name="search" placeholder="キーワードを入力" aria-label="検索..."

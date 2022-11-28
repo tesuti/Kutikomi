@@ -15,16 +15,16 @@ function Auth() {
 
     return (
     <>
-        <ul className="hidden md:flex ">
+        <ul className="">
             ログイン済みadmin
             <li>
-                <Link className='no-underline' to="/admin">Home</Link>
+                <Link className='' to="/admin">Home</Link>
             </li>
             <li>
-                <Link className='no-underline' to="/admin/post">記事の投稿</Link>
+                <Link className='' to="/admin/post">記事の投稿</Link>
             </li>
             <li>
-                <button className="btn" onClick={logoutUser}>Logout</button>
+                <button className="" onClick={logoutUser}>Logout</button>
             </li>
 
         </ul>

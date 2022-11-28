@@ -7,6 +7,7 @@ function Post() {
     const [title, setTitle] = useState("");
     const [body,setBody] = useState("");
     const [photo,setPhoto] = useState();
+    const [error,setError]=useState(false);
 
     const data = {
         title: title,
@@ -16,6 +17,9 @@ function Post() {
 
     const submitForm = (e) =>{
         e.preventDefault();
+        if(title.length==0||body.length==0){
+            setError(true)
+        }
         axios.post('/post',data,{
             headers: {
                 'content-type': 'multipart/form-data',
@@ -24,7 +28,7 @@ function Post() {
             vaigate('/admin');
         })
     }
-  return (
+return (
     <div>
     <h2>記事を作成</h2>
     <label>タイトル</label>
@@ -33,11 +37,19 @@ function Post() {
     onChange={(e) => setTitle(e.target.value)}
     />
 
+    {error&&title.length<=0?
+        <label className='text-red-700'>入力してくさい</label>:""
+    }
+
     <label>内容</label>
     <textarea  type="text" name='body' className=''
     value={body || ''}
     onChange={(e) => setBody(e.target.value)}
     />
+
+    {error&&body.length<=0?
+        <label className='text-red-700'  >入力してください</label>:""
+    }
 
     <label  htmlFor="images">画像</label>
         <input

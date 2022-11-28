@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Index from './admin/index'
 import { BrowserRouter } from 'react-router-dom';
+import '../css/app.css'
 
 function Admin() {
     return (

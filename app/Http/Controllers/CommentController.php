@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Comment;
-use App\Models\Rating;
+use App\Services\CommentServices;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+
 class CommentController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -74,7 +77,7 @@ class CommentController extends Controller
      */
     public function edit($id)
     {
-//
+  //
     }
 
     /**
@@ -86,7 +89,13 @@ class CommentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $comment = Comment::whereId($id)->first();
+
+        $comment->update([
+            'comment'=>$request->comment,
+            'rating'=>$request->rating,
+        ]);
+        return response()->json('success');
     }
 
     /**
@@ -97,6 +106,8 @@ class CommentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Comment::whereId($id)->first()->delete();
+
+        return response()->json('success');
     }
 }

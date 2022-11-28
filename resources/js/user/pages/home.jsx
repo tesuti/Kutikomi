@@ -15,13 +15,10 @@ function home() {
             setPosts(res.data);
         })
     }
-console.log(posts);
-
-
-    return (
-    <div>
-
-        {posts.map((posts, i)=>(
+    function renderElement(){
+        if(posts){
+            return <div>
+                {posts.map((posts, i)=>(
                 <div key={i}>
                     <Link to={{ pathname :"/view/"+posts.id }}>
                     {++i}
@@ -32,7 +29,18 @@ console.log(posts);
                 </div>
 
         ))}
+            </div>
+        }else{
+            return <p>Loading.....</p>
+        }
 
+    }
+
+    return (
+    <div>
+
+
+{ renderElement() }
     </div>
     )
 }

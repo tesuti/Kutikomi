@@ -19,6 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::get('/dashboard', function () {
     return view('welcome');
 })->middleware(['auth'])->name('dashboard');
@@ -41,6 +42,10 @@ Route::get('me', [AuthController::class,'me'])->middleware(['auth']);
 Route::get('admin/me', [AdminController::class,'me'])->middleware(['auth:admin']);
 
 Route::resource('post',Controllers\PostController::class);
+
 Route::resource('comment',Controllers\CommentController::class);
+
+Route::post('review',[Controllers\CommentController::class,'store']);
+
 
 

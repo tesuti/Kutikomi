@@ -9,7 +9,8 @@ export default function View(props){
     const [inputs, setInputs] = useState({});
     const [comment, setComment] = useState("");
     const [rating, setRating] = useState("");
-
+    const [error,setError]=useState(false);
+    const [userdetail,setUserdetail] = useState('');
 
     const [commentField, setCommentField] = useState([]);
     const {id} = useParams();
@@ -20,16 +21,17 @@ export default function View(props){
 
     };
 
+
     let total_rating = 0;
 
     const submitForm = (e)=>{
         e.preventDefault();
-        axios.post('/comment',data).then((res)=>{
+        axios.post('/review',data).then((res)=>{
         })
     }
 
-
     useEffect(() =>{
+        fetchUserDetail();
         fetchPost();
         fetchComment();
     },[]);
@@ -42,6 +44,7 @@ export default function View(props){
             });
         });
     }
+
     const fetchComment = () =>{
         axios.get('/comment/'+ id).then((res)=>{
 
@@ -49,113 +52,166 @@ export default function View(props){
                 res.data
             );
         });
+    }
+    const deleteComment= (id) =>{
+        axios.delete('/comment/'+id).then(res=>{
 
+        })
+    }
+
+    const editComment= (id) =>{
+        axios.put('/comment/'+id,data).then(res=>{
+
+        })
+    }
+
+    const fetchUserDetail = () =>{
+        axios.get('/me').then((res)=>{
+            setUserdetail(res.data);
+    });
+}
+
+function renderElement(){
+    if(userdetail){
+return <div>
+            <label>コメント</label>
+            <input type="text" name='comment' className=''
+            value={comment || ''}
+            onChange={(e) => setComment(e.target.value)}
+            />
+
+            <label>評価</label>
+            <input type="text" name='rating' className=''
+            value={rating || ''}
+            onChange={(e) => setRating(e.target.value)}
+            />
+            <button type='button' onClick={submitForm}>登録</button>
+    </div>
 
     }
+    else{
+        return <label className='text-red-700 delay-75'>ログインをしてください</label>
+    }
+}
 
     return(
         <div>
-            <section className="pt-12 sm:pt-20 text-black">
-                <p>{ inputs.title }</p>
-                <p>{ inputs.body }</p>
+        <section className="pt-12 sm:pt-20 text-black">
+            <p>{ inputs.title }</p>
+            <p>{ inputs.body }</p>
 
 
-            {commentField.reduce((total,commentFields,total_comment)=>{
-            total_rating += commentFields.rating;
-            {++total_comment}
+        {commentField.reduce((total,commentFields,total_comment)=>{
+        total_rating += commentFields.rating;
+        {++total_comment}
 
-            //星の平均値
-            const average= total_rating / total_comment;
+        //星の平均値
+        const average= total_rating / total_comment;
 
-        return(
-            <>
-            {[...Array(5)].map((star, i) => {
+    return(
+        <>
+        {[...Array(5)].map((star, i) => {
 
-        const ratingValue = i + 1
+    const ratingValue = i + 1
 
-        return (
-        <label key={i}>
-            <input
-            type="radio"
-            name="rating"
-            value={ratingValue}
-            />
-            <FaStar
-            className="star"
-            color={ratingValue <= (Math.floor(average * 100) / 100)  ? "#ffc107" : "#e4e5e9"}
-            size={20}
-            />
-        </label>
-        );
-
-        })}
-
-            <p>平均値：{Math.floor(average * 100) / 100}</p>
-            <p>コメント数{total_comment}</p>
-            </>
-        );
-        },0)}
-
-            </section>
-
-        <div>
-        <h2>記事を作成</h2>
-        <label>コメント</label>
-        <input type="text" name='comment' className=''
-        value={comment || ''}
-        onChange={(e) => setComment(e.target.value)}
+    return (
+    <label key={i}>
+        <input
+        type="radio"
+        name="rating"
+        value={ratingValue}
         />
-
-        <label>評価</label>
-        <input type="text" name='rating' className=''
-        value={rating || ''}
-        onChange={(e) => setRating(e.target.value)}
+        <FaStar
+        className="star"
+        color={ratingValue <= (Math.floor(average * 100) / 100)  ? "#ffc107" : "#e4e5e9"}
+        size={20}
         />
+    </label>
+    );
 
-        <button type='button' onClick={submitForm}>登録</button>
-        </div>
+    })}
 
-        <div>
+        <p>平均値：{Math.floor(average * 100) / 100}</p>
+        <p>コメント数{total_comment}</p>
+        </>
+    );
+    },0)}
 
-        <div>
-        {commentField.map((commentField,i)=>(
+        </section>
 
-            <div key={commentField.id}>
-                <p>{ ++i}</p>
-                <p>{ commentField.user.name}</p>
-                {[...Array(5)].map((star,i) => {
+        {/* 投稿フォーム */}
+        { renderElement() }
 
-                    const ratingValue = i + 1
+    <div>
 
-                    return (
-                        <label key={i}>
-                            <input
-                            type="radio"
-                            name="rating"
-                            value={ratingValue}
-                            className="hidden"
-                            />
-                            <FaStar
-                            className="star"
-                            color={ratingValue <= (commentField.rating) ? "#ffc107" : "#e4e5e9"}
-                            size={20}
-                            />
-                        </label>
-                    )
+    <div>
+    {commentField.map((commentField,i)=>(
 
-                })}
+        <div key={commentField.id}>
+            <p>{ ++i}</p>
+            <p>{ commentField.user.name}</p>
+            {[...Array(5)].map((star,i) => {
 
-                <p>{ commentField.comment}</p>
+                const ratingValue = i + 1
 
-                <p>------</p>
+                return (
+                    <label key={i}>
+                        <input
+                        type="radio"
+                        name="rating"
+                        value={ratingValue}
+                        className="hidden"
+                        />
+                        <FaStar
+                        className="star"
+                        color={ratingValue <= (commentField.rating) ? "#ffc107" : "#e4e5e9"}
+                        size={20}
+                        />
+                    </label>
+                )
+
+            })}
+
+            <p>{ commentField.comment}</p>
+        {userdetail.id == commentField.user_id ?
+        <>
+            <div>
+                <label>コメント</label>
+                <input type="text" name='comment' className=''
+                value={comment || ''}
+                onChange={(e) => setComment(commentField.id)}
+                />
+                {/* <input type="text" name='comment'
+                value={comment || ''}
+                onChange={(e) => setComment(commentField.id)}
+                /> */}
+                {/* {commentField.id} */}
+
+                <label>評価</label>
+                <input type="text" name='rating' className=''
+                value={rating || ''}
+                onChange={(e) => setRating(e.target.value)}
+                />
+                <button type='button' onClick={editComment}>登録</button>
             </div>
-        ))}
+
+            <button type="button" className="btn"
+            onClick={()=>{deleteComment(commentField.id)}}>
+                削除
+            </button>
+        </>
+        :''
+        }
+            <p>------</p>
+        </div>
+    ))}
+</div>
+
+
+
+
+    </div>
     </div>
 
-
-
-
-        </div>
-        </div>
     )
 }
