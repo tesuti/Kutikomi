@@ -39,6 +39,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::get('me', [AuthController::class,'me'])->middleware(['auth']);
+Route::resource('user',Controllers\AuthController::class);
+
 Route::get('admin/me', [AdminController::class,'me'])->middleware(['auth:admin']);
 
 Route::resource('post',Controllers\PostController::class);

@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FaStar } from 'react-icons/fa';
-import './App.css';
+// import './App.css';
 
 export default function View(props){
 
@@ -61,9 +61,9 @@ export default function View(props){
             );
         });
     }
-    
     const deleteComment= (id) =>{
         axios.delete('/comment/'+id).then(res=>{
+
         })
     }
 
@@ -92,7 +92,7 @@ return <div>
 
     }
     else{
-        return <label className='text-red-700 delay-75'>ログインをしてください</label>
+        return <label className='text-red-700 delay-75'>管理者画面</label>
     }
 }
 
@@ -175,31 +175,14 @@ return <div>
             })}
 
             <p>{ commentField.comment}</p>
-        {userdetail.id == commentField.user_id ?
-        <>
 
-<div>
-            <label>コメント</label>
-            <input type="text" name='comment' className=''
-            value={editComment || ''}
-            onChange={(e) => setEditComment(e.target.value)}
-            />
 
-            <label>評価</label>
-            <input type="text" name='rating' className=''
-            value={editRating || ''}
-            onChange={(e) => setEditRating(e.target.value)}
-            />
-            <button type='button' onClick={() =>{submitEdit(commentField.id)}}>編集</button>
-    </div>
 
             <button type="button" className="btn"
             onClick={()=>{deleteComment(commentField.id)}}>
                 削除
             </button>
-        </>
-        :''
-        }
+
             <p>------</p>
         </div>
     ))}

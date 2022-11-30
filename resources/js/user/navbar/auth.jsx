@@ -1,6 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { Routes, Route, Link, useNavigate } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 import Home from '../pages/home';
 import Rating from '../pages/rating';
 import View from '../pages/view'
@@ -9,18 +8,6 @@ import View from '../pages/view'
 
 function Auth() {
 
-    // const [query,setQuery]= useState("");
-
-    useEffect(() =>{
-        fetchAllPost();
-    },[]);
-
-    const fetchAllPost = async() =>{
-        await axios.get('/comment').then(res=>{
-            setPosts(res.data);
-        })
-    }
-
     const logoutUser = (e)=>{
         e.preventDefault();
         axios.post('/logout').then((res)=>{
@@ -28,18 +15,6 @@ function Auth() {
         })
     }
 
-    // const data = {
-    //     search:search
-    // };
-
-    // const submitForm = (e) =>{
-    //     e.preventDefault();
-    //     axios.post('/search',data).then((res)=>{
-    //         setQuery(res.data);
-    //         console.log(query);
-    //     })
-
-    // }
     return (
     <>
         <ul className="hidden md:flex ">

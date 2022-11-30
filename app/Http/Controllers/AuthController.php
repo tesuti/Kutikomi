@@ -13,6 +13,16 @@ class AuthController extends Controller
     {
         return response()->json(Auth::user());
     }
+    public function index()
+    {
+        return response()->json( User::latest()->get());
+    }
 
+    public function destroy($id)
+    {
+        User::whereId($id)->first()->delete();
+
+        return response()->json('success');
+    }
 
 }

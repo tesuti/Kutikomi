@@ -15,9 +15,6 @@ function Guest() {
 
 
     <ul className="hidden md:flex ">
-            <li>
-                <Link className='' to="/">Home</Link>
-            </li>
             <button
                 onClick={admin}
                 className="">管理者
@@ -27,11 +24,6 @@ function Guest() {
                 className="">register
             </button>
     </ul>
-        <div className="">
-            <Routes>
-                <Route path="/" element={<Home />} />
-            </Routes>
-        </div>
     </>
     );
 }
