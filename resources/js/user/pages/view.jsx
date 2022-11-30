@@ -9,16 +9,16 @@ export default function View(props){
     const [inputs, setInputs] = useState({});
     const [comment, setComment] = useState("");
     const [rating, setRating] = useState("");
-    const [error,setError]=useState(false);
+
     const [userdetail,setUserdetail] = useState('');
 
     const [commentField, setCommentField] = useState([]);
     const {id} = useParams();
+
     const data = {
         comment: comment,
         rating: rating,
         id:id,
-
     };
 
 
@@ -26,7 +26,11 @@ export default function View(props){
 
     const submitForm = (e)=>{
         e.preventDefault();
-        axios.post('/review',data).then((res)=>{
+        axios.post('/comment',data).then((res)=>{
+        })
+    }
+    const submitEdit = (id)=>{
+        axios.put('/comment/'+id,data).then((res)=>{
         })
     }
 
@@ -55,12 +59,6 @@ export default function View(props){
     }
     const deleteComment= (id) =>{
         axios.delete('/comment/'+id).then(res=>{
-
-        })
-    }
-
-    const editComment= (id) =>{
-        axios.put('/comment/'+id,data).then(res=>{
 
         })
     }
@@ -175,25 +173,21 @@ return <div>
             <p>{ commentField.comment}</p>
         {userdetail.id == commentField.user_id ?
         <>
-            <div>
-                <label>コメント</label>
-                <input type="text" name='comment' className=''
-                value={comment || ''}
-                onChange={(e) => setComment(commentField.id)}
-                />
-                {/* <input type="text" name='comment'
-                value={comment || ''}
-                onChange={(e) => setComment(commentField.id)}
-                /> */}
-                {/* {commentField.id} */}
 
-                <label>評価</label>
-                <input type="text" name='rating' className=''
-                value={rating || ''}
-                onChange={(e) => setRating(e.target.value)}
-                />
-                <button type='button' onClick={editComment}>登録</button>
-            </div>
+<div>
+            <label>コメント</label>
+            <input type="text" name='comment' className=''
+            value={comment || ''}
+            onChange={(e) => setComment(e.target.value)}
+            />
+
+            <label>評価</label>
+            <input type="text" name='rating' className=''
+            value={rating || ''}
+            onChange={(e) => setRating(e.target.value)}
+            />
+            <button type='button' onClick={() =>{submitEdit(commentField.id)}}>編集</button>
+    </div>
 
             <button type="button" className="btn"
             onClick={()=>{deleteComment(commentField.id)}}>

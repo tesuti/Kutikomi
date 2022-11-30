@@ -45,7 +45,6 @@ Route::resource('post',Controllers\PostController::class);
 
 Route::resource('comment',Controllers\CommentController::class);
 
-Route::post('review',[Controllers\CommentController::class,'store']);
 
 
 
