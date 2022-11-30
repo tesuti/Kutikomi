@@ -9,7 +9,7 @@ function home() {
     const [body,setBody] = useState("");
     const [photo,setPhoto] = useState();
     const [error,setError]=useState(false);
-    
+
     const data = {
         title: title,
         body: body,
@@ -38,6 +38,12 @@ function home() {
             setPosts(res.data);
         })
     }
+
+    const deletePost= (id) =>{
+        axios.delete('/post/'+id).then(res=>{
+        })
+    }
+
     function renderElement(){
         if(posts){
             return <div>
@@ -86,7 +92,7 @@ function home() {
 
 </div>
             <button type="button" className="btn"
-            onClick={()=>{deleteComment(commentField.id)}}>
+            onClick={()=>{deletePost(posts.id)}}>
                 削除
             </button>
                 </div>

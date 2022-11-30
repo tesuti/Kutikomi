@@ -28,6 +28,8 @@ function Post() {
             vaigate('/admin');
         })
     }
+
+
 return (
     <div>
     <h2>記事を作成</h2>
