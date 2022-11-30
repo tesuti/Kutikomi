@@ -24,6 +24,11 @@ export default function View(props){
         rating: rating,
         id:id,
     };
+    const editData = {
+        comment: editComment,
+        rating: editRating,
+        id:id,
+    };
 
 
     let total_rating = 0;
@@ -34,7 +39,7 @@ export default function View(props){
         })
     }
     const submitEdit = (id)=>{
-        axios.put('/comment/'+id,data).then((res)=>{
+        axios.put('/comment/'+id,editData).then((res)=>{
         })
     }
 
@@ -61,7 +66,7 @@ export default function View(props){
             );
         });
     }
-    
+
     const deleteComment= (id) =>{
         axios.delete('/comment/'+id).then(res=>{
         })

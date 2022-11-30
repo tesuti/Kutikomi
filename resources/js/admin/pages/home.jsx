@@ -29,6 +29,7 @@ function home() {
             vaigate('/admin');
         })
     }
+
     useEffect(() =>{
         fetchAllPost();
     },[]);
@@ -44,6 +45,15 @@ function home() {
         })
     }
 
+    const submitEdit = (id)=>{
+        
+        axios.put('/post/'+id,data,{
+            headers: {
+                'content-type': 'multipart/form-data',
+            },
+        }).then((res)=>{
+        })
+    }
     function renderElement(){
         if(posts){
             return <div>
@@ -88,7 +98,7 @@ function home() {
                 setPhoto( e.target.files[0])
                     }
             />
-    <button type='button' onClick={submitForm}>登録</button>
+    <button type='button' onClick={() =>{submitEdit(posts.id)}}>編集</button>
 
 </div>
             <button type="button" className="btn"

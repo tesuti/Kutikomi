@@ -91,7 +91,24 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = Post::find($id);
+        $post->title = $request->title;
+        $post->body = $request->body;
+
+
+        $fileName = $request->file('photo')->getClientOriginalName();
+
+        $request->file('photo')->storeAs('images/', $fileName, 'public');
+
+        $post->photo = $fileName;
+        $post->update();
+        
+        $destination = 'storage/images/'.$post->photo;
+        if(File::exists($destination))
+        {
+            File::delete($destination);
+        }
+        return response()->json('success');
     }
 
     /**
