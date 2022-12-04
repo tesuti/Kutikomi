@@ -4,6 +4,7 @@ import Home from '../pages/home';
 import Post from '../pages/post';
 import View from '../pages/view'
 import User from '../pages/user'
+import Edit from '../pages/edit'
 
 function Auth() {
 
@@ -39,6 +40,7 @@ function Auth() {
                 <Route path="/admin/post" element={<Post />} />
                 <Route path="/admin/user" element={<User />} />
                 <Route path='/admin/view/:id' element={<View />} />
+                <Route path='/admin/edit/:id' element={<Edit />} />
             </Routes>
         </div>
     </>

@@ -14,9 +14,6 @@ export default function View(props){
 
     const [commentField, setCommentField] = useState([]);
 
-    const [editComment, setEditComment] = useState("");
-    const [editRating, setEditRating] = useState("");
-
     const {id} = useParams();
 
     const data = {
@@ -33,10 +30,7 @@ export default function View(props){
         axios.post('/comment',data).then((res)=>{
         })
     }
-    const submitEdit = (id)=>{
-        axios.put('/comment/'+id,data).then((res)=>{
-        })
-    }
+
 
     useEffect(() =>{
         fetchUserDetail();

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
 
 
 function home() {
@@ -10,25 +10,12 @@ function home() {
     const [photo,setPhoto] = useState();
     const [error,setError]=useState(false);
 
+
     const data = {
         title: title,
         body: body,
         photo:photo,
     };
-
-    const submitForm = (e) =>{
-        e.preventDefault();
-        if(title.length==0||body.length==0){
-            setError(true)
-        }
-        axios.post('/post',data,{
-            headers: {
-                'content-type': 'multipart/form-data',
-            },
-        }).then((res)=>{
-            vaigate('/admin');
-        })
-    }
 
     useEffect(() =>{
         fetchAllPost();
@@ -45,15 +32,8 @@ function home() {
         })
     }
 
-    const submitEdit = (id)=>{
-        
-        axios.put('/post/'+id,data,{
-            headers: {
-                'content-type': 'multipart/form-data',
-            },
-        }).then((res)=>{
-        })
-    }
+
+
     function renderElement(){
         if(posts){
             return <div>
@@ -65,42 +45,9 @@ function home() {
                     <img src={ "http://127.0.0.1:5173/storage/app/public/images/" +posts.photo}  alt={posts.photo} width="200px"/>
                     </Link>
                 <div>
-                <div>
-    <h2>記事を作成</h2>
-    <label>タイトル</label>
-    <input type="text" name='title' className=''
-    value={title || ''}
-    onChange={(e) => setTitle(e.target.value)}
-    />
-
-    {error&&title.length<=0?
-        <label className='text-red-700'>入力してくさい</label>:""
-    }
-
-    <label>内容</label>
-    <textarea  type="text" name='body' className=''
-    value={body || ''}
-    onChange={(e) => setBody(e.target.value)}
-    />
-
-    {error&&body.length<=0?
-        <label className='text-red-700'  >入力してください</label>:""
-    }
-
-    <label  htmlFor="images">画像</label>
-        <input
-            accept="image/* .png .jpg .jpeg"
-            multiple
-            type="file"
-            id='photo'
-            name="photo"
-            onChange={(e) =>
-                setPhoto( e.target.files[0])
-                    }
-            />
-    <button type='button' onClick={() =>{submitEdit(posts.id)}}>編集</button>
-
-</div>
+                <Link to={{ pathname :"edit/"+posts.id }}>
+                    編集
+                    </Link>
             <button type="button" className="btn"
             onClick={()=>{deletePost(posts.id)}}>
                 削除

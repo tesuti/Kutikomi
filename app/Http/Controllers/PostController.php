@@ -45,8 +45,8 @@ class PostController extends Controller
             'title' => 'required',
             'body' => 'required',
         ]);
-        $fileName = $request->file('photo')->getClientOriginalName();
-
+        $name = $request->file('photo')->getClientOriginalName();
+        $fileName = time().'.'.$name;
         $request->file('photo')->storeAs('images/', $fileName, 'public');
 
         $test = new Post;
@@ -92,22 +92,27 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         $post = Post::find($id);
-        $post->title = $request->title;
-        $post->body = $request->body;
-
-
-        $fileName = $request->file('photo')->getClientOriginalName();
-
-        $request->file('photo')->storeAs('images/', $fileName, 'public');
-
-        $post->photo = $fileName;
-        $post->update();
-        
+        $request->validate([
+        'photo' => 'required',
+        'title' => 'required',
+        'body' => 'required',
+        ]);
         $destination = 'storage/images/'.$post->photo;
         if(File::exists($destination))
         {
             File::delete($destination);
         }
+
+
+        $fileName = $request->file('photo')->getClientOriginalName();
+        $request->file('photo')->storeAs('images/', $fileName, 'public');
+
+        $post->photo = $fileName;
+        $post->title = $request->title;
+        $post->body = $request->body;
+        $post->update();
+
+
         return response()->json('success');
     }
 

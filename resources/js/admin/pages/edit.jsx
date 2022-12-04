@@ -1,37 +1,57 @@
 import axios from 'axios';
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate, useParams } from "react-router-dom";
 
-function Post() {
+
+function edit() {
     const vaigate = useNavigate();
+    const [posts, setPosts] = useState([]);
     const [title, setTitle] = useState("");
     const [body,setBody] = useState("");
     const [photo,setPhoto] = useState();
     const [error,setError]=useState(false);
 
+    const {id} = useParams();
+
     const data = {
         title: title,
         body: body,
         photo:photo,
+        id:id,
     };
 
-    const submitForm = async(e) =>{
+    useEffect(() =>{
+        fetchAllPost();
+    },[]);
+
+    const fetchAllPost = async() =>{
+        await axios.get('/post').then(res=>{
+            setPosts(res.data);
+        })
+    }
+
+    const submitEdit = async(e)=>{
+        console.log(data);
         e.preventDefault();
-        if(title.length==0||body.length==0){
-            setError(true)
-        }
-        await axios.post('/post',data,{
+        await axios.post('/post/'+id,data, {
             headers: {
                 'content-type': 'multipart/form-data',
+                'X-HTTP-Method-Override': 'PUT',
             },
-        }).then((res)=>{
+    }).then((res)=>{
             vaigate('/admin');
         })
     }
 
 
-return (
+    return (
     <div>
+
+
+<div>
+
+                <div>
+                <div>
     <h2>記事を作成</h2>
     <label>タイトル</label>
     <input type="text" name='title' className=''
@@ -39,9 +59,7 @@ return (
     onChange={(e) => setTitle(e.target.value)}
     />
 
-    {error&&title.length<=0?
-        <label className='text-red-700'>入力してくさい</label>:""
-    }
+
 
     <label>内容</label>
     <textarea  type="text" name='body' className=''
@@ -49,9 +67,7 @@ return (
     onChange={(e) => setBody(e.target.value)}
     />
 
-    {error&&body.length<=0?
-        <label className='text-red-700'  >入力してください</label>:""
-    }
+
 
     <label  htmlFor="images">画像</label>
         <input
@@ -64,10 +80,18 @@ return (
                 setPhoto( e.target.files[0])
                     }
             />
-    <button type='button' onClick={submitForm}>登録</button>
+    <button type='button' onClick={submitEdit}>編集</button>
 
 </div>
-)
+
+                </div>
+
+
+
+
+            </div>
+    </div>
+    )
 }
 
-export default Post
+export default edit
