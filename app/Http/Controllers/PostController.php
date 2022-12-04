@@ -104,7 +104,8 @@ class PostController extends Controller
         }
 
 
-        $fileName = $request->file('photo')->getClientOriginalName();
+        $name = $request->file('photo')->getClientOriginalName();
+        $fileName = time().'.'.$name;
         $request->file('photo')->storeAs('images/', $fileName, 'public');
 
         $post->photo = $fileName;

@@ -31,7 +31,6 @@ function edit() {
     }
 
     const submitEdit = async(e)=>{
-        console.log(data);
         e.preventDefault();
         await axios.post('/post/'+id,data, {
             headers: {
