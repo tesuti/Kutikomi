@@ -5,6 +5,7 @@ import Post from '../pages/post';
 import View from '../pages/view'
 import User from '../pages/user'
 import Edit from '../pages/edit'
+import UserName from './userName';
 
 function Auth() {
 
@@ -31,6 +32,9 @@ function Auth() {
             </li>
             <li>
                 <button className="" onClick={logoutUser}>ログアウト</button>
+            </li>
+            <li>
+            <Link className="no-underline border-none bg-transparent text-black mr-4"><UserName /></Link>
             </li>
 
         </ul>
