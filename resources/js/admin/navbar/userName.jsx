@@ -9,7 +9,7 @@ const userName = () => {
     },[]);
 
     const fetchUserDetail = () =>{
-        axios.get('/me').then((res)=>{
+        axios.get('/admin/me').then((res)=>{
             setUserdetail(res.data);
     });
 }
