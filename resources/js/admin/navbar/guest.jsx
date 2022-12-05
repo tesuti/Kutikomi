@@ -21,7 +21,7 @@ function Guest() {
             </button>
             <button
                 onClick={register}
-                className="">register
+                className="">登録
             </button>
     </ul>
     </>

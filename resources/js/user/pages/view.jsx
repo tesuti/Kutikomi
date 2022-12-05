@@ -49,11 +49,12 @@ export default function View(props){
         fetchComment();
     },[]);
 
-    const fetchPost = () =>{
-        axios.get('/post/' +id+ '/edit').then((res)=>{
+    const fetchPost = async() =>{
+        await axios.get('/post/' +id+ '/edit').then((res)=>{
             setInputs({
                 title:res.data.title,
                 body:res.data.body,
+                photo:res.data.photo,
             });
         });
     }
@@ -78,6 +79,10 @@ export default function View(props){
     });
 }
 
+const login = () =>{
+    window.location.replace("/login")
+}
+
 function renderElement(){
     if(userdetail){
 return <div>
@@ -97,7 +102,20 @@ return <div>
 
     }
     else{
-        return <label className='text-red-700 delay-75'>ログインをしてください</label>
+        return <div>
+        <label>コメント</label>
+        <input type="text" name='comment' className=''
+        value={comment || ''}
+        onChange={(e) => setComment(e.target.value)}
+        />
+
+        <label>評価</label>
+        <input type="text" name='rating' className=''
+        value={rating || ''}
+        onChange={(e) => setRating(e.target.value)}
+        />
+        <button type='button' onClick={login}>登録</button>
+</div>
     }
 }
 
@@ -106,7 +124,7 @@ return <div>
         <section className="pt-12 sm:pt-20 text-black">
             <p>{ inputs.title }</p>
             <p>{ inputs.body }</p>
-
+            <img src={ "http://127.0.0.1:5173/storage/app/public/images/" +inputs.photo}  alt={inputs.photo} width="200px"/>
 
         {commentField.reduce((total,commentFields,total_comment)=>{
         total_rating += commentFields.rating;

@@ -3,7 +3,7 @@ import { Routes, Route, Link } from 'react-router-dom';
 import Home from '../pages/home';
 import Rating from '../pages/rating';
 import View from '../pages/view'
-
+import UserName from './userName';
 
 
 function Auth() {
@@ -32,6 +32,9 @@ function Auth() {
             </li>
             <li>
                 <button className="btn" onClick={logoutUser}>ログアウト</button>
+            </li>
+            <li>
+            <Link className="no-underline border-none bg-transparent text-black mr-4"><UserName /></Link>
             </li>
 
         </ul>

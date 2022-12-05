@@ -22,11 +22,11 @@ function Guest() {
             </li>
             <button
                 onClick={login}
-                className="nav-link">login
+                className="nav-link">ログイン
             </button>
             <button
                 onClick={register}
-                className="nav-link">register
+                className="nav-link">登録
             </button>
         </ul>
         <div className="">
