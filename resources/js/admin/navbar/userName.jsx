@@ -18,13 +18,7 @@ const userName = () => {
             return <>
             <div >
                 <p className='bg-red-200 p-3 rounded-full'>{userdetail.name[0]}</p>
-            {/* <div className={!nav ? 'hidden' : ''}>
-            <ul>
-                <li>
-                <span role="button" className="" onClick={logoutUser}>Logout</span>
-                </li>
-            </ul>
-            </div> */}
+
             </div>
 
             </>
