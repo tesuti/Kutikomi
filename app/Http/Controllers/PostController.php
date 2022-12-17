@@ -132,7 +132,7 @@ class PostController extends Controller
             File::delete($destination);
         }
 
-        $post->first()->delete();
+        $post->whereId($id)->delete();
         return response()->json('success');
     }
 }
