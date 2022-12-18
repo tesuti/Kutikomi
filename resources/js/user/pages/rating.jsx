@@ -26,11 +26,11 @@ function rating() {
                     <p className='p-3'>{++i}</p>
                     <img  className='object-cover sm:w-3/12 '  src={ "http://127.0.0.1:5173/storage/app/public/images/" +posts.posts.photo} alt={posts.posts.photo} />
 
-                <div className='p-5'>
+                <div className='p-5 truncate'>
                     <p>OOOOO</p>
                 <p className=' font-normal text-gray-600'>{ posts.comment_avg}</p>
                 <h3 className='text-xl text-slate-700 mb-3'>{ posts.posts.title}</h3>
-                <h3 className='text-xl text-slate-700 mb-3'>{ posts.posts.body}</h3>
+                <h3 className='text-xl text-slate-700 truncate'>{ posts.posts.body}</h3>
                 </div>
                 </div>
             </Link>

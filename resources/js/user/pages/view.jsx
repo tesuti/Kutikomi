@@ -120,12 +120,16 @@ return <div>
 }
 
     return(
-        <div>
-        <section className="pt-12 sm:pt-20 text-black">
-            <p>{ inputs.title }</p>
-            <p>{ inputs.body }</p>
-            <img src={ "http://127.0.0.1:5173/storage/app/public/images/" +inputs.photo}  alt={inputs.photo} width="200px"/>
+        <section className=" w-h auto-mt">
+            <div className=" container  max-w-4xl mx-auto p-0 sm:py-36 px-2" >
+        <div className="">
+        <img src={ "http://127.0.0.1:5173/storage/app/public/images/" +inputs.photo}  alt={inputs.photo} className="className='rounded-t-lg object-cover sm:w-full pt-6  "/>
+        <section className="flex justify-between py-5">
+            <div>
+                <p>{ inputs.title }</p>
 
+            </div>
+            <div>
         {commentField.reduce((total,commentFields,total_comment)=>{
         total_rating += commentFields.rating;
         {++total_comment}
@@ -134,7 +138,7 @@ return <div>
         const average= total_rating / total_comment;
 
     return(
-        <>
+        <section>
         {[...Array(5)].map((star, i) => {
 
     const ratingValue = i + 1
@@ -158,11 +162,15 @@ return <div>
 
         <p>平均値：{Math.floor(average * 100) / 100}</p>
         <p>コメント数{total_comment}</p>
-        </>
+        </section>
     );
     },0)}
+    </div>
+</section>
+<p className="break-all pb-5">{ inputs.body }</p>
 
-        </section>
+
+        </div>
 
         {/* 投稿フォーム */}
         { renderElement() }
@@ -228,11 +236,9 @@ return <div>
     ))}
 </div>
 
-
-
-
     </div>
     </div>
+    </section>
 
     )
 }

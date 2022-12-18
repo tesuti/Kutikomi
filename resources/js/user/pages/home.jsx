@@ -33,7 +33,7 @@ function home() {
 
           <div className='p-5'>
             <h3 className='text-3xl font-bold text-slate-700 mb-3'>{ posts.title}</h3>
-            <p className='text-lg font-normal text-gray-600'>{ posts.body}</p>
+            <p className='text-lg font-normal text-gray-600 truncate'>{ posts.body}</p>
           </div>
         </div>
 

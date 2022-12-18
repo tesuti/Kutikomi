@@ -18,7 +18,6 @@ const userName = () => {
             window.location.reload();
         })
     }
-
     const fetchUserDetail = () =>{
         axios.get('/me').then((res)=>{
             setUserdetail(res.data);
@@ -34,7 +33,7 @@ window.addEventListener('click',(e)=>{
             return <>
             <button className=' text-white font-[Poppins] rounded md:ml-8 duration-500'>
     <div className=''>
-    <p className='bg-red-200 h-10  w-10 rounded-full  cursor-pointer ' ref={imgRef} onClick={() => setOpen(!open)}>A</p>
+    <p className='bg-red-200 h-10  w-10 rounded-full  cursor-pointer text-3xl' ref={imgRef} onClick={() => setOpen(!open)}>{userdetail.name[0]}</p>
 
        </div>
        </button>
@@ -44,6 +43,10 @@ window.addEventListener('click',(e)=>{
           <div ref={menuRef} className=' '>
         <div className="bg-white p-4 w-52 shadow-lg  -left-14 top-12">
           <ul>
+            <li onClick={() => setOpen(false)} className=
+                'p-2 text-lg   ' >
+                    <p className="text-gray-800 duration-500">{userdetail.name}</p>
+            </li>
             <li onClick={() => setOpen(false)} className=
                 'p-2 text-lg cursor-pointer rounded hover:bg-blue-100' >
                     <button className="text-gray-800 hover:text-gray-400 duration-500" onClick={logoutUser}>ログアウト</button>
