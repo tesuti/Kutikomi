@@ -3,45 +3,25 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FaStar } from 'react-icons/fa';
 import './App.css';
+import Comments from "./componets/View/Comments";
+import Create from "./componets/View/Create";
 
 export default function View(props){
 
     const [inputs, setInputs] = useState({});
     const [comment, setComment] = useState("");
-    const [rating, setRating] = useState("");
+    const [rating, setRating] = useState("0");
 
     const [userdetail,setUserdetail] = useState('');
 
     const [commentField, setCommentField] = useState([]);
 
-    const [editComment, setEditComment] = useState("");
-    const [editRating, setEditRating] = useState("");
+
+    const [hover, setHover] = useState(null);
 
     const {id} = useParams();
 
-    const data = {
-        comment: comment,
-        rating: rating,
-        id:id,
-    };
-    const editData = {
-        comment: editComment,
-        rating: editRating,
-        id:id,
-    };
-
-
     let total_rating = 0;
-
-    const submitForm = (e)=>{
-        e.preventDefault();
-        axios.post('/comment',data).then((res)=>{
-        })
-    }
-    const submitEdit = (id)=>{
-        axios.put('/comment/'+id,editData).then((res)=>{
-        })
-    }
 
     useEffect(() =>{
         fetchUserDetail();
@@ -68,10 +48,7 @@ export default function View(props){
         });
     }
 
-    const deleteComment= (id) =>{
-        axios.delete('/comment/'+id).then(res=>{
-        })
-    }
+
 
     const fetchUserDetail = () =>{
         axios.get('/me').then((res)=>{
@@ -86,40 +63,49 @@ const login = () =>{
 function renderElement(){
     if(userdetail){
 return <div>
-            <label>コメント</label>
-            <input type="text" name='comment' className=''
-            value={comment || ''}
-            onChange={(e) => setComment(e.target.value)}
-            />
-
-            <label>評価</label>
-            <input type="text" name='rating' className=''
-            value={rating || ''}
-            onChange={(e) => setRating(e.target.value)}
-            />
-            <button type='button' onClick={submitForm}>登録</button>
+        <Create />
     </div>
 
     }
     else{
         return <div>
+{/* ログイン画面へ送る */}
         <label>コメント</label>
         <input type="text" name='comment' className=''
         value={comment || ''}
         onChange={(e) => setComment(e.target.value)}
         />
+{[...Array(5)].map((star, i) => {
+            const ratingValue = i + 1
 
-        <label>評価</label>
-        <input type="text" name='rating' className=''
-        value={rating || ''}
-        onChange={(e) => setRating(e.target.value)}
-        />
+            return (
+            <label key={ratingValue}>
+                <input
+                type="radio"
+                name="rating"
+                value={ratingValue}
+                onChange={(e) => setRating(e.target.value)}
+                />
+                <FaStar
+                className="star"
+                color={ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9"}
+
+                size={20}
+                onMouseEnter={() => setHover(ratingValue)}
+                onMouseLeave={() => setHover(null)}
+                />
+            </label>
+
+        );
+        })}
+        <span>{rating}/5</span>
         <button type='button' onClick={login}>登録</button>
 </div>
     }
 }
 
     return(
+        // 画像と評価の平均値を表示
         <section className=" w-h auto-mt">
             <div className=" container  max-w-4xl mx-auto p-0 sm:py-36 px-2" >
         <div className="">
@@ -178,62 +164,7 @@ return <div>
     <div>
 
     <div>
-    {commentField.map((commentField,i)=>(
-
-        <div key={commentField.id}>
-            <p>{ ++i}</p>
-            <p>{ commentField.user.name}</p>
-            {[...Array(5)].map((star,i) => {
-
-                const ratingValue = i + 1
-
-                return (
-                    <label key={i}>
-                        <input
-                        type="radio"
-                        name="rating"
-                        value={ratingValue}
-                        className="hidden"
-                        />
-                        <FaStar
-                        className="star"
-                        color={ratingValue <= (commentField.rating) ? "#ffc107" : "#e4e5e9"}
-                        size={20}
-                        />
-                    </label>
-                )
-
-            })}
-
-            <p>{ commentField.comment}</p>
-        {userdetail.id == commentField.user_id ?
-        <>
-
-<div>
-            <label>コメント</label>
-            <input type="text" name='comment' className=''
-            value={editComment || ''}
-            onChange={(e) => setEditComment(e.target.value)}
-            />
-
-            <label>評価</label>
-            <input type="text" name='rating' className=''
-            value={editRating || ''}
-            onChange={(e) => setEditRating(e.target.value)}
-            />
-            <button type='button' onClick={() =>{submitEdit(commentField.id)}}>編集</button>
-    </div>
-
-            <button type="button" className="btn"
-            onClick={()=>{deleteComment(commentField.id)}}>
-                削除
-            </button>
-        </>
-        :''
-        }
-            <p>------</p>
-        </div>
-    ))}
+    <Comments/>
 </div>
 
     </div>
