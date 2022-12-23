@@ -65,11 +65,14 @@ const  Comments = () => {
 
   return (
     <>
+<div className='a'>
 {commentField.map((commentField,i)=>(
-
+    <div className='s' >
+ <div className='flex justify-between '>
 <div key={commentField.id}>
     <p>{ ++i}</p>
     <p>{ commentField.user.name}</p>
+
     {[...Array(5)].map((star,i) => {
 
         const ratingValue = i + 1
@@ -93,17 +96,18 @@ const  Comments = () => {
     })}
 
     <p>{ commentField.comment}</p>
-
+    </div>
 {userdetail.id == commentField.user_id ?
 <>
 
-<div>
-    <div  onClick={showSidebar}>
-        <button  onClick={() =>{setPopup(commentField.id)}}>:</button>
+<div >
+    {/* :を押したidを取得 */}
+    <div  onClick={() =>{setPopup(commentField.id)}} >
+        <button className='p-4 hover:text-purple-600 ' onClick={showSidebar}>:</button>
     </div>
     {popup == commentField.id ?
         <>
-        <ul   className={` top-6 cursor-pointer
+        <ul   className={`py-2.5 pr-6 top-6 cursor-pointer  right-12  rounded-lg bg-gray-200
             ${sidebar ? 'hidden':' '}`}>
         <li className='md:ml-8 text-xl md:my-0 my-7 '>
             <div >
@@ -114,9 +118,12 @@ const  Comments = () => {
             <button className="text-gray-800 hover:text-gray-400 duration-500" >削除</button>
         </li>
 
-    <div  className={`  -8 top-6 cursor-pointer
+    <div  className={` fixed inset-0 bg-black bg-opacity-25  flex justify-center items-center
                 ${openEdit ? '':' hidden'}`}>
-        <label>コメント</label>
+                    <div className='w-[600px] flex flex-col'>
+                    <button className="text-white text-xl place-self-end" onClick={() => onClose()}>x</button>
+                    <div className="bg-white p-2 rounded">
+                    <label>コメント</label>
             <input type="text" name='comment' className=''
             value={editComment || ''}
             onChange={(e) => setEditComment(e.target.value)}
@@ -129,21 +136,40 @@ const  Comments = () => {
             />
 
         <div onClick={showSidebar}>
-            <button type='button' onClick={() =>{submitEdit(commentField.id)}}> 編集
-            </button>
-        </div>
-    </div>
-        <div className={` top-6 cursor-pointer
-            ${openDelete ? '':' hidden'}`}>
-                <p>コメントの削除</p>
-                <p>コメントを完全に削除しますか？</p>
+            <div onClick={() => setOpenEdit(!openEdit)}>
                 <button onClick={showSidebar}>キャンセル</button>
-                <div onClick={showSidebar}>
+            </div>
+            <div onClick={() => setOpenEdit(!openEdit)}>
+                <button type='button' onClick={() =>{submitEdit(commentField.id)}}> 編集
+                </button>
+            </div>
+        </div>
+                    </div>
+                    </div>
+
+    </div>
+
+        <div className={`
+            ${openDelete ? 'fixed inset-0 bg-black bg-opacity-25  flex justify-center items-center':' hidden'}`}>
+
+                <div className='w-[600px] flex flex-col'>
+                <button className="text-white text-xl place-self-end" onClick={() => onClose()}>x</button>
+                <div className="bg-white p-2 rounded">
+                    <p>コメントの削除</p>
+                    <p>コメントを完全に削除しますか？</p>
+                    <div onClick={() => setOpenDelete(!openDelete)}>
+                        <button onClick={showSidebar}>キャンセル</button>
+                    </div>
+                    <div onClick={showSidebar}>
                     <button type="button" className="btn"
                     onClick={()=>{deleteComment(commentField.id)}}>
                         削除
                     </button>
+                </div>
+                </div>
+
             </div>
+
         </div>
     </ul>
      </>
@@ -153,9 +179,10 @@ const  Comments = () => {
 </>
 :''
 }
-    <p>------</p>
+</div>
 </div>
 ))}
+</div>
     </>
   )
 }

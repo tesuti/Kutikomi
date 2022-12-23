@@ -41,7 +41,7 @@ window.addEventListener('click',(e)=>{
        {
         open &&(
           <div ref={menuRef} className=' '>
-        <div className="bg-white p-4 w-52 shadow-lg  -left-14 top-12">
+        <div className="bg-white p-4 w-52 shadow-lg  -left-14 top-12 rounded-lg">
           <ul>
             <li onClick={() => setOpen(false)} className=
                 'p-2 text-lg   ' >
