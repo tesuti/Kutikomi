@@ -14,7 +14,7 @@ function Auth() {
     const showSidebar = () => setSidebar(!sidebar);
     return (
         <>
-        <div className='shadow-md w-full sticky top-0 left-0 '>
+        <div className='shadow-md w-full sticky top-0 left-0 z-50'>
           <div className='flex items-center justify-between bg-white py-4 md:px-10 px-7'>
           <div className='font-bold text-2xl cursor-pointer flex  item-center font-[Poppins] text-gray-800'>
           <div onClick={showSidebar} className='text-3xl  -8 top-6 cursor-pointer md:hidden'>

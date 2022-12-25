@@ -40,12 +40,12 @@ window.addEventListener('click',(e)=>{
        <div className='absolute top-24 right-0 pd-9'>
        {
         open &&(
-          <div ref={menuRef} className=' '>
+          <div ref={menuRef} >
         <div className="bg-white p-4 w-52 shadow-lg  -left-14 top-12 rounded-lg">
           <ul>
             <li onClick={() => setOpen(false)} className=
-                'p-2 text-lg   ' >
-                    <p className="text-gray-800 duration-500">{userdetail.name}</p>
+                'p-2 text-lg' >
+                <p className="text-gray-800 duration-500">{userdetail.name}</p>
             </li>
             <li onClick={() => setOpen(false)} className=
                 'p-2 text-lg cursor-pointer rounded hover:bg-blue-100' >

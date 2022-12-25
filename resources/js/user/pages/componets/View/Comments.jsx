@@ -17,19 +17,15 @@ const  Comments = () => {
     const showSidebar = () => setSidebar(!sidebar);
     const {id} = useParams();
 
-    // const  menuRef =  useRef();
-    // const  imgRef =  useRef();
     const editData = {
         comment: editComment,
         rating: editRating,
         id:id,
     };
 
-    // window.addEventListener('click',(e)=>{
-    //     if(e.target !== menuRef.current && e.target !==  imgRef.current){
-    //         const showSidebar = () => setSidebar(!sidebar);
-    //     }
-    //   });
+    const  menuRef =  useRef();
+    const  editRef =  useRef();
+
 
     const submitEdit = (id)=>{
         axios.put('/comment/'+id,editData).then((res)=>{
@@ -67,8 +63,8 @@ const  Comments = () => {
     <>
 <div className='a'>
 {commentField.map((commentField,i)=>(
-    <div className='s' >
- <div className='flex justify-between '>
+    <div className='' >
+ <div className='flex justify-between relative'>
 <div key={commentField.id}>
     <p>{ ++i}</p>
     <p>{ commentField.user.name}</p>
@@ -102,23 +98,30 @@ const  Comments = () => {
 
 <div >
     {/* :を押したidを取得 */}
-    <div  onClick={() =>{setPopup(commentField.id)}} >
-        <button className='p-4 hover:text-purple-600 ' onClick={showSidebar}>:</button>
+    <div   onClick={() =>{setPopup(commentField.id)}} >
+        <button  className='p-4 hover:text-purple-600 ' onClick={showSidebar}>:</button>
     </div>
+
     {popup == commentField.id ?
         <>
-        <ul   className={`py-2.5 pr-6 top-6 cursor-pointer  right-12  rounded-lg bg-gray-200
-            ${sidebar ? 'hidden':' '}`}>
-        <li className='md:ml-8 text-xl md:my-0 my-7 '>
-            <div >
-                <button onClick={() => setOpenEdit(!openEdit)} className="text-gray-800 hover:text-gray-400 duration-500" >編集</button>
-            </div>
-        </li>
-        <li  onClick={() => setOpenDelete(!openDelete)} className='md:ml-8 text-xl md:my-0 my-7'>
-            <button className="text-gray-800 hover:text-gray-400 duration-500" >削除</button>
-        </li>
 
-    <div  className={` fixed inset-0 bg-black bg-opacity-25  flex justify-center items-center
+        <ul   className={`
+            ${sidebar ? 'hidden':' '}`}>
+            <div ref={menuRef} className='bg-white py-3.5 px-4 right-14 bottom-0 rounded absolute shadow-md'>
+                <li className='text-xl'>
+                    <div>
+                        <button onClick={() => setOpenEdit(!openEdit)} className="text-gray-800 hover:text-gray-400 duration-500 mb-2.5" >編集
+                        </button>
+                    </div>
+                </li>
+                <li  onClick={() => setOpenDelete(!openDelete)} className=' text-xl '>
+                <button className="text-gray-800 hover:text-gray-400 duration-500" >削除</button>
+            </li>
+        </div>
+        </ul>
+
+
+    <div  ref={editRef}  className={` fixed inset-0 bg-black bg-opacity-25  flex justify-center items-center
                 ${openEdit ? '':' hidden'}`}>
                     <div className='w-[600px] flex flex-col'>
                     <button className="text-white text-xl place-self-end" onClick={() => onClose()}>x</button>
@@ -171,7 +174,7 @@ const  Comments = () => {
             </div>
 
         </div>
-    </ul>
+
      </>
         :''}
   </div>
@@ -182,6 +185,7 @@ const  Comments = () => {
 </div>
 </div>
 ))}
+
 </div>
     </>
   )
