@@ -7,8 +7,9 @@ const Create = () => {
     const [comment, setComment] = useState("");
     const [rating, setRating] = useState("0");
 
-
     const [hover, setHover] = useState(null);
+
+    let [createComment, setCreateComment]= useState(false);
 
     const {id} = useParams();
 
