@@ -3,6 +3,8 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { FaStar } from 'react-icons/fa';
+// import moment from 'moment';
+// import 'moment/locale/ja';
 
 const  Comments = () => {
     const [userdetail,setUserdetail] = useState('');
@@ -59,44 +61,40 @@ const  Comments = () => {
 
   return (
     <>
-<div className='a'>
+<div className=''>
 {commentField.map((commentField,i)=>(
-    <div className='' >
- <div className='flex justify-between relative'>
-<div key={commentField.id}>
-    <p>{ ++i}</p>
-    <p>{ commentField.user.name}</p>
+<div className='' >
+    <div className='pb-4 flex justify-between relative'>
+        <div key={commentField.id}>
+            <p>{ commentField.user.name}</p>
+            {[...Array(5)].map((star,i) => {
 
-    {[...Array(5)].map((star,i) => {
+                const ratingValue = i + 1
 
-        const ratingValue = i + 1
+                return (
+                    <label key={i}>
+                        <input
+                        type="radio"
+                        name="rating"
+                        value={ratingValue}
+                        className="hidden"
+                        />
+                        <FaStar
+                        className="star"
+                        color={ratingValue <= (commentField.rating) ? "#ffc107" : "#e4e5e9"}
+                        size={20}
+                        />
+                    </label>
+                )
+            })}
+            <p>{ commentField.comment}</p>
+            {/* <p>{moment( commentField.created_at).fromNow()}</p> */}
 
-        return (
-            <label key={i}>
-                <input
-                type="radio"
-                name="rating"
-                value={ratingValue}
-                className="hidden"
-                />
-                <FaStar
-                className="star"
-                color={ratingValue <= (commentField.rating) ? "#ffc107" : "#e4e5e9"}
-                size={20}
-                />
-            </label>
-        )
-
-    })}
-
-    <p>{ commentField.comment}</p>
-    </div>
-{userdetail.id == commentField.user_id ?
-<>
-
-<div >
+        </div>
+    {userdetail.id == commentField.user_id ?
+        <>
+    <div>
     {/* :を押したidを取得 */}
-
     <div onClick={() =>{setPopup(commentField.id)}} >
         <button  className='p-4 hover:text-purple-600 ' onClick={() => setSidebar(!sidebar)}>:</button>
     </div>
@@ -104,7 +102,7 @@ const  Comments = () => {
         <>
 
         <ul className={`
-            ${sidebar ? 'hidden':' '}`}>
+            ${sidebar ? '':' hidden'}`}>
             <div  className='bg-white py-3.5 px-4 right-14 bottom-0 rounded absolute shadow-md'>
                 <li className='text-xl'>
                     <div>

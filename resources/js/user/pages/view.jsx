@@ -68,38 +68,9 @@ return <div>
 
     }
     else{
+        // ログインしていないときログイン画面へ移動する
         return <div>
-{/* ログイン画面へ送る */}
-        <label>コメント</label>
-        <input type="text" name='comment' className=''
-        value={comment || ''}
-        onChange={(e) => setComment(e.target.value)}
-        />
-{[...Array(5)].map((star, i) => {
-            const ratingValue = i + 1
-
-            return (
-            <label key={ratingValue}>
-                <input
-                type="radio"
-                name="rating"
-                value={ratingValue}
-                onChange={(e) => setRating(e.target.value)}
-                />
-                <FaStar
-                className="star"
-                color={ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9"}
-
-                size={20}
-                onMouseEnter={() => setHover(ratingValue)}
-                onMouseLeave={() => setHover(null)}
-                />
-            </label>
-
-        );
-        })}
-        <span>{rating}/5</span>
-        <button type='button' onClick={login}>登録</button>
+        <button  className='px-5 py-2.5 mb-7 text-center bg-slate-200  hover:bg-slate-300 rounded' onClick={login}>コメント</button>
 </div>
     }
 }
@@ -110,7 +81,7 @@ return <div>
             <div className=" container  max-w-4xl mx-auto p-0 sm:py-36 px-2" >
         <div className="">
         <img src={ "http://127.0.0.1:5173/storage/app/public/images/" +inputs.photo}  alt={inputs.photo} className="className='rounded-t-lg object-cover sm:w-full pt-6  "/>
-        <section className="flex justify-between py-5">
+        <section className="flex justify-between pt-4">
             <div>
                 <p>{ inputs.title }</p>
 
@@ -153,8 +124,7 @@ return <div>
     },0)}
     </div>
 </section>
-<p className="break-all pb-5">{ inputs.body }</p>
-
+<p className="break-all pb-3">{ inputs.body }</p>
 
         </div>
 

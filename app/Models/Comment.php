@@ -21,7 +21,9 @@ class Comment extends Model
         'post_id',
         'parent_id',
         'comment',
-        'rating'];
+        'rating',
+        'created_at'
+    ];
 
     /**
      * Write Your Code..

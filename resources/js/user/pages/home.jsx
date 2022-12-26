@@ -28,8 +28,8 @@ if(posts){
                                     <img src={ "http://127.0.0.1:5173/storage/app/public/images/" +posts.photo}  alt={posts.photo}  className='rounded-xl'/>
                                 </div>
                                 <div className=''>
-                                    <h3 className='text-base font-bol '>{ posts.title}</h3>
-                                    <p className='text-sm font-normal text-gray-600 truncate'>{ posts.body}</p>
+                                    <h3 className='text-base'>{ posts.title}</h3>
+                                    <p className='home__posts-body break-all text-sm font-normal text-gray-600'>{ posts.body}</p>
                                 </div>
                             </Link>
                         </div>

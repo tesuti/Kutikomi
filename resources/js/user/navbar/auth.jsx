@@ -16,11 +16,13 @@ function Auth() {
         <>
         <div className='shadow-md w-full sticky top-0 left-0 z-50'>
           <div className='flex items-center justify-between bg-white py-4 md:px-10 px-7'>
-          <div className='font-bold text-2xl cursor-pointer flex  item-center font-[Poppins] text-gray-800'>
+          <div className='font-bold text-xl cursor-pointer flex  item-center font-[Poppins] text-gray-800'>
           <div onClick={showSidebar} className='text-3xl  -8 top-6 cursor-pointer md:hidden'>
             {sidebar ? 'X' : '='}
           </div>
-          <p> Designer</p>
+            <Link  to="/">
+                <p className="text-gray-800 hover:text-gray-400 duration-500" >S/A</p>
+            </Link>
           </div>
 
 
@@ -39,10 +41,6 @@ function Auth() {
                     <p className="text-gray-800 hover:text-gray-400 duration-500" >ランキング</p>
                 </Link>
             </li>
-
-                <li className='x'>
-
-                </li>
 
 
 
