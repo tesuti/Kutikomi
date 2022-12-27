@@ -13,7 +13,7 @@ function Auth() {
     let [sidebar, setSidebar]= useState(false);
     const showSidebar = () => setSidebar(!sidebar);
     return (
-        <>
+        <div className='bg-stone-50'>
         <div className='shadow-md w-full sticky top-0 left-0 z-50'>
           <div className='flex items-center justify-between bg-white py-4 md:px-10 px-7'>
           <div className='font-bold text-xl cursor-pointer flex  item-center font-[Poppins] text-gray-800'>
@@ -52,14 +52,14 @@ function Auth() {
           </div>
         </div>
 
-        <div className="bg-stone-50">
+        <div>
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/rating" element={<Rating />} />
                     <Route path='/view/:id' element={<View />} />
                 </Routes>
             </div>
-        </>
+        </div>
     );
 }
 

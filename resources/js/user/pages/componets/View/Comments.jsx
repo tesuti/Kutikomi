@@ -1,8 +1,9 @@
 
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { FaStar } from 'react-icons/fa';
+import useOutsideClick from "./useOutsideClick";
 // import moment from 'moment';
 // import 'moment/locale/ja';
 
@@ -21,6 +22,16 @@ const  Comments = () => {
     const [hover, setHover] = useState(null);
 
     const {id} = useParams();
+
+    const ref = useRef();
+
+    useOutsideClick(ref, () => {
+        if(openDelete) setOpenDelete(false);
+        else if (sidebar) setSidebar(false);
+    });
+
+
+
 
     const editData = {
         comment: editComment,
@@ -61,7 +72,7 @@ const  Comments = () => {
 
   return (
     <>
-<div className=''>
+<div className='pb-10'>
 {commentField.map((commentField,i)=>(
 <div className='' >
     <div className='pb-4 flex justify-between relative'>
@@ -103,7 +114,7 @@ const  Comments = () => {
 
         <ul className={`
             ${sidebar ? '':' hidden'}`}>
-            <div  className='bg-white py-3.5 px-4 right-14 bottom-0 rounded absolute shadow-md'>
+            <div ref={ref} className='bg-white py-3.5 px-4 right-14 bottom-0 rounded absolute shadow-md'>
                 <li className='text-xl'>
                     <div>
                         <button onClick={() => setOpenEdit(!openEdit)} className="text-gray-800 hover:text-gray-400 duration-500 mb-2.5" >編集
@@ -117,11 +128,10 @@ const  Comments = () => {
         </ul>
 
 
-    <div className={`z-40 fixed inset-0 bg-black bg-opacity-25  flex justify-center items-center
-                ${openEdit ? '':' hidden'}`}>
+    <div className={`
+    ${openEdit ? 'z-40 fixed inset-0 bg-black bg-opacity-25  flex justify-center items-center':' hidden'}`}>
         <div className='w-[600px] flex flex-col'>
-            <button className="text-white text-xl place-self-end" onClick={() => onClose()}>x</button>
-                <div className="bg-white p-2 rounded">
+                <div ref={ref} className="bg-white p-2 rounded">
                     <div className='mb-7'>
 
                         <label className='block mb-2 text-sm font-medium text-gray-900'>評価</label>
@@ -145,21 +155,18 @@ const  Comments = () => {
                 onMouseLeave={() => setHover(null)}
                 />
             </label>
-
         );
         })}
         <span>　{editRating}/5</span>
 
-                        <label className='block mb-2 text-sm font-medium text-gray-900'>コメント</label>
-                            <input type="text" name='comment' className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
+            <label className='block mb-2 text-sm font-medium text-gray-900'>コメント</label>
+                <input type="text" name='comment' className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
                             value={editComment || ''}
                             onChange={(e) => setEditComment(e.target.value)}
                         />
                     </div>
-                <div className='flex justify-center items-center gap-4' onClick={() => setSidebar(!sidebar)}>
-                    <div onClick={() => setOpenEdit(!openEdit)}>
-                        <button className='px-5 py-2.5 text-center hover:bg-slate-200 rounded' onClick={() => setSidebar(!sidebar)}>キャンセル</button>
-                    </div>
+                <div className='flex justify-center items-center gap-4'>
+                        <button className='md:px-5 py-2.5 text-center hover:bg-slate-200 rounded' onClick={() => setOpenEdit(!openEdit)}>キャンセル</button>
                     <div onClick={() => setOpenEdit(!openEdit)}>
                         <button className=' text-white bg-blue-700 hover:bg-blue-800 focus:ring- focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center' type='button' onClick={() =>{submitEdit(commentField.id)}}> 編集
                         </button>
@@ -171,19 +178,17 @@ const  Comments = () => {
 
         <div className={`
             ${openDelete ? 'z-40 fixed inset-0 bg-black bg-opacity-25  flex justify-center items-center':' hidden'}`}>
-
-                <div className='w-[400px] flex flex-col'>
-                <button className="text-white text-xl place-self-end" onClick={() => onClose()}>x</button>
-                <div className="bg-white p-2 rounded">
+            <div className='w-[400px] flex flex-col'>
+                <div ref={ref} className="bg-white p-2 rounded">
                     <div className='mb-3'>
                         <p>コメントの削除</p>
                         <p>コメントを完全に削除しますか？</p>
                     </div>
-                    <div onClick={() => setOpenDelete(!openDelete)} className='flex justify-center items-center gap-4'>
-                        <div className='px-5 py-2.5 text-center hover:bg-slate-200 rounded' >
-                            <button onClick={() => setSidebar(!sidebar)}>キャンセル</button>
+                    <div className='flex justify-center items-center gap-4'>
+                        <div className='md:px-5 py-2.5 text-center hover:bg-slate-200 rounded' >
+                            <button onClick={() => setOpenDelete(!openDelete)} >キャンセル</button>
                         </div>
-                        <div onClick={() => setSidebar(!sidebar)}>
+                        <div onClick={() => setSidebar(!openDelete)}>
                             <button type="button" className=' text-white bg-red-700 hover:bg-red-800 focus:ring- focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center'
                             onClick={()=>{deleteComment(commentField.id)}}>
                                 削除
@@ -191,7 +196,6 @@ const  Comments = () => {
                         </div>
                     </div>
                 </div>
-
             </div>
 
         </div>

@@ -1,6 +1,8 @@
-import {  useState } from "react";
+import {  useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FaStar } from 'react-icons/fa';
+
+import useOutsideClick from "./useOutsideClick";
 
 const Create = () => {
 
@@ -12,6 +14,12 @@ const Create = () => {
     let [createComment, setCreateComment]= useState(false);
 
     const {id} = useParams();
+
+    const ref = useRef();
+
+    useOutsideClick(ref, () => {
+      if (createComment) setCreateComment(false);
+    });
 
     const data = {
         comment: comment,
@@ -29,9 +37,9 @@ const Create = () => {
     <>
     <div className="">
         <button  className='px-5 py-2.5 mb-7 text-center bg-slate-200  hover:bg-slate-300 rounded' onClick={() => setCreateComment(!createComment)}>コメント</button>
-    <div className={`absolute z-30 bg-white p-4 rounded w-[300px] shadow-md
+    <div ref={ref}  className={`absolute z-30 bg-white p-4 rounded w-[300px] shadow-md
             ${createComment ? '':'hidden'}`}>
-        <div className="my-7">
+        <div  className="my-7">
             <div>
                 {[...Array(5)].map((star, i) => {
                 const ratingValue = i + 1
@@ -65,7 +73,9 @@ const Create = () => {
                 />
         </div>
     </div>
+        <span onClick={() => setCreateComment(!createComment)}>
             <button type='button' className="text-white bg-blue-700 hover:bg-blue-800 focus:ring- focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" onClick={submitForm}>登録</button>
+        </span>
     </div>
     </div>
     </>

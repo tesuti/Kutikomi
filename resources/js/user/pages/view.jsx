@@ -117,8 +117,8 @@ return <div>
 
     })}
 
-        <p>平均値：{Math.floor(average * 100) / 100}</p>
-        <p>コメント数{total_comment}</p>
+        　{Math.floor(average * 100) / 100}
+        <p>コメント：{total_comment}</p>
         </section>
     );
     },0)}

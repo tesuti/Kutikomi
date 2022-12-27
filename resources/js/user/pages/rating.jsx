@@ -17,12 +17,13 @@ function rating() {
     }
 
     return (
+        <div className=' w-h h-screen auto-mt'>
         <div className=" container  max-w-4xl mx-auto p-0 py-36 px-2">
         <div className='grid  grid-cols-1 gap-6 pt-8'>
 
        {posts.map((posts, i)=>(
           <Link to={{ pathname :"/view/"+posts.posts.id }} key={i}>
-            <div className='sm:flex mt-7 bg-white rounded-lg shadow-inner '>
+            <div className='sm:flex mb-7 bg-white rounded-lg shadow-inner '>
                     <p className='p-3'>{++i}</p>
                     <img  className='object-cover sm:w-3/12 '  src={ "http://127.0.0.1:5173/storage/app/public/images/" +posts.posts.photo} alt={posts.posts.photo} />
 
@@ -56,6 +57,7 @@ function rating() {
 
           ))}
         </div>
+      </div>
       </div>
     )
 }

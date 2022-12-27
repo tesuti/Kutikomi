@@ -16,6 +16,9 @@ function Auth() {
         })
     }
 
+    const register = () =>{
+        window.location.replace("/admin/register")
+    }
 
     return (
     <>
@@ -33,12 +36,15 @@ function Auth() {
             <li>
                 <button className="" onClick={logoutUser}>ログアウト</button>
             </li>
+            <button
+                onClick={register}
+                className="">新規登録
+            </button>
             <li>
             <Link className="no-underline border-none bg-transparent text-black mr-4"><UserName /></Link>
             </li>
 
         </ul>
-        <div className="">
             <Routes>
                 <Route path="/admin" element={<Home />} />
                 <Route path="/admin/post" element={<Post />} />
@@ -46,7 +52,6 @@ function Auth() {
                 <Route path='/admin/view/:id' element={<View />} />
                 <Route path='/admin/edit/:id' element={<Edit />} />
             </Routes>
-        </div>
     </>
     );
 }

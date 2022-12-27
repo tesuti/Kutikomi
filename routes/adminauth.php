@@ -35,6 +35,11 @@ Route::group(['middleware' => ['guest:admin'],'prefix' => 'admin','as'=>'admin.'
 });
 
 Route::group(['middleware' => ['auth:admin'],'prefix' => 'admin','as'=>'admin.'],function(){
+    Route::get('register', [RegisteredUserController::class, 'create'])
+    ->name('register');
+
+Route::post('register', [RegisteredUserController::class, 'store']);
+
     Route::get('verify-email', [EmailVerificationPromptController::class, '__invoke'])
                 ->name('verification.notice');
 
