@@ -9,15 +9,10 @@ import Create from "./componets/View/Create";
 export default function View(props){
 
     const [inputs, setInputs] = useState({});
-    const [comment, setComment] = useState("");
-    const [rating, setRating] = useState("0");
 
     const [userdetail,setUserdetail] = useState('');
 
     const [commentField, setCommentField] = useState([]);
-
-
-    const [hover, setHover] = useState(null);
 
     const {id} = useParams();
 
