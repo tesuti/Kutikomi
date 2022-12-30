@@ -6,13 +6,24 @@ function Post() {
     const vaigate = useNavigate();
     const [title, setTitle] = useState("");
     const [body,setBody] = useState("");
-    const [photo,setPhoto] = useState();
+    const [photo,setPhoto] = useState({
+        file:[],
+        filepreview:null,
+       });
     const [error,setError]=useState(false);
+
+    const handleInputChange = (e) => {
+        setPhoto({
+          ...photo,
+          file:e.target.files[0],
+          filepreview:URL.createObjectURL(e.target.files[0]),
+        });
+      }
 
     const data = {
         title: title,
         body: body,
-        photo:photo,
+        photo:photo.file,
     };
 
     const submitForm = async(e) =>{
@@ -20,6 +31,7 @@ function Post() {
         if(title.length==0||body.length==0){
             setError(true)
         }
+        
         await axios.post('/post',data,{
             headers: {
                 'content-type': 'multipart/form-data',
@@ -59,10 +71,11 @@ return (
                         type="file"
                         id='photo'
                         name="photo"
-                        onChange={(e) =>
-                            setPhoto( e.target.files[0])
-                                }
+                        onChange={handleInputChange}
                     />
+                    {photo.filepreview !== null ?
+        <img className="pb-3"  src={photo.filepreview} alt="UploadImage" />
+      : null}
                 </div>
             <button type='button' className="text-white bg-blue-700 hover:bg-blue-800 focus:ring- focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"  onClick={submitForm}>登録</button>
             </div>
