@@ -75,7 +75,7 @@ return <div>
         // 画像と評価の平均値を表示
         <section className=" w-h auto-mt">
             <div className=" container  max-w-4xl mx-auto p-0 sm:py-36 px-2" >
-        <div className="">
+        <div>
             {inputs.photo != null ?<>
         <img src={ "http://127.0.0.1:5173/storage/app/public/images/" +inputs.photo}  alt={inputs.photo} className="rounded-t-lg object-cover sm:w-full pt-6"/>
         <section className="flex justify-between pt-4">

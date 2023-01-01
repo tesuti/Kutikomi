@@ -94,15 +94,12 @@ class PostController extends Controller
         $post = Post::find($id);
         $request->validate([
         'photo' => 'required',
-        'title' => 'required',
-        'body' => 'required',
         ]);
         $destination = 'storage/images/'.$post->photo;
         if(File::exists($destination))
         {
             File::delete($destination);
         }
-
 
         $name = $request->file('photo')->getClientOriginalName();
         $fileName = time().'.'.$name;
