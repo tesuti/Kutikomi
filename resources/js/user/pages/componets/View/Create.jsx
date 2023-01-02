@@ -1,4 +1,4 @@
-import {  useRef, useState } from "react";
+import {  useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FaStar } from 'react-icons/fa';
 
@@ -10,9 +10,10 @@ const Create = () => {
     const [rating, setRating] = useState("0");
 
     const [hover, setHover] = useState(null);
-
+    const [commentField, setCommentField] = useState([]);
     let [createComment, setCreateComment]= useState(false);
 
+    const [userdetail,setUserdetail] = useState('');
     const {id} = useParams();
 
     const ref = useRef();
@@ -25,14 +26,35 @@ const Create = () => {
         comment: comment,
         rating: rating,
         id:id,
+        user:userdetail,
     };
+    useEffect(() =>{
+        fetchUserDetail();
+    },[]);
 
+    const fetchUserDetail = () =>{
+        axios.get('/me').then((res)=>{
+            setUserdetail(res.data);
+    });
+}
     const submitForm = (e)=>{
         e.preventDefault();
+        setCommentField([
+            // これまでの情報を保存する
+            ...commentField,
+            {
+                comment: comment,
+                rating: rating,
+                id:id,
+                user:userdetail,
+            }
+        ]);
         axios.post('/comment',data).then((res)=>{
         })
     }
 
+
+    commentField.reverse();
   return (
     <>
     <div className="">
@@ -78,6 +100,35 @@ const Create = () => {
         </span>
     </div>
     </div>
+    {commentField.map((commentField, index) => (
+        <div key={index} className="pb-4 flex justify-between relative">
+            <div className="todoText">
+                <p>{commentField.user.name}</p>
+                {[...Array(5)].map((star,i) => {
+
+        const ratingValue = i + 1
+
+        return (
+            <label key={i}>
+                <input
+                type="radio"
+                name="rating"
+                value={ratingValue}
+                className="hidden"
+                />
+                <FaStar
+                className="star"
+                color={ratingValue <= (commentField.rating) ? "#ffc107" : "#e4e5e9"}
+                size={20}
+                />
+            </label>
+        )
+        })}
+            <p>{commentField.comment}</p>
+            </div>
+
+        </div>
+        ))}
     </>
   )
 }

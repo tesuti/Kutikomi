@@ -16,7 +16,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $post = Post::with('comments')->get();
+        $post = Post::with('comments')->orderBy('created_at', 'DESC')->get();
         return response()->json($post);
 
     }

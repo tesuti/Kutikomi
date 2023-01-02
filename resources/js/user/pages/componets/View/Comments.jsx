@@ -30,9 +30,6 @@ const  Comments = () => {
         else if (sidebar) setSidebar(false);
     });
 
-
-
-
     const editData = {
         comment: editComment,
         rating: editRating,

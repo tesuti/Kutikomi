@@ -75,11 +75,11 @@ function edit() {
                 </div>
                 </>:<div className="animate-pulse">
         <div className=" bg-slate-700 pb-[57%] mt-6">　</div>
-        <div class="flex-1 space-y-6 py-1">
-      <div class="space-y-3 pt-4 ">
-        <div class="grid grid-cols-3 gap-4">
-          <div class="h-2 mb-4 bg-slate-700 rounded col-span-2"></div>
-          <div class="h-2 bg-slate-700 rounded col-span-1"></div>
+        <div className="flex-1 space-y-6 py-1">
+      <div className="space-y-3 pt-4 ">
+        <div className="grid grid-cols-3 gap-4">
+          <div className="h-2 mb-4 bg-slate-700 rounded col-span-2"></div>
+          <div className="h-2 bg-slate-700 rounded col-span-1"></div>
         </div>
       </div>
     </div>

@@ -17,7 +17,7 @@ function rating() {
     }
 
     return (
-        <div className=' w-h h-screen auto-mt'>
+        <div className=' w-h  auto-mt'>
         <div className=" container  max-w-4xl mx-auto p-0 py-36 px-2">
         <div className='grid  grid-cols-1 gap-6 pt-8'>
 

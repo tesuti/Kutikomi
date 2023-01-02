@@ -18,7 +18,7 @@ function home() {
 function renderElement(){
 if(posts){
     return(
-        <div className=' w-h h-screen auto-mt'>
+        <div className=' w-h  auto-mt'>
             <div className=" container  max-w-5xl mx-auto p-0 sm:py-36 px-2" >
                 <div className='pt-3 grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-6'>
                     {posts.map((posts, i)=>(

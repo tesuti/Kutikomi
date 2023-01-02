@@ -63,8 +63,8 @@ export default function View(props){
 
     return(
         <section>
+        {/* 5回ループ 星☆☆☆☆☆　*/}
         {[...Array(5)].map((star, i) => {
-
     const ratingValue = i + 1
 
     return (
@@ -81,7 +81,6 @@ export default function View(props){
         />
     </label>
     );
-
     })}
 
         　{Math.floor(average * 100) / 100}
@@ -94,13 +93,13 @@ export default function View(props){
 <p className="break-all pb-3">{ inputs.body }</p>
 </>:<div className="animate-pulse">
         <div className=" bg-slate-700 pb-[57%] mt-6">　</div>
-        <div class="flex-1 space-y-6 py-1">
-      <div class="space-y-3 pt-4 pb-8">
-        <div class="grid grid-cols-3 gap-4">
-          <div class="h-2 mb-4 bg-slate-700 rounded col-span-2"></div>
-          <div class="h-2 bg-slate-700 rounded col-span-1"></div>
+        <div className="flex-1 space-y-6 py-1">
+      <div className="space-y-3 pt-4 pb-8">
+        <div className="grid grid-cols-3 gap-4">
+          <div className="h-2 mb-4 bg-slate-700 rounded col-span-2"></div>
+          <div className="h-2 bg-slate-700 rounded col-span-1"></div>
         </div>
-        <div class="h-2 bg-slate-700 rounded"></div>
+        <div className="h-2 bg-slate-700 rounded"></div>
       </div>
     </div>
 
