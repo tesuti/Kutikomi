@@ -44,11 +44,11 @@ export default function View(props){
     return(
         <div>
                 <section className=" w-h auto-mt">
-            <div className=" container  max-w-4xl mx-auto p-0 sm:py-36 px-2" >
+            <div className=" container  max-w-4xl mx-auto p-0 sm:py-36 px-2 " >
         <div>
         {inputs.photo != null ?<>
         <img src={ "http://127.0.0.1:5173/storage/app/public/images/" +inputs.photo}  alt={inputs.photo} className="rounded-t-lg object-cover sm:w-full pt-6  "/>
-        <section className="star:flex justify-between pt-4">
+        <section className="pt-4 break-all">
             <div>
                 <p>{ inputs.title }</p>
 
@@ -62,7 +62,7 @@ export default function View(props){
         const average= total_rating / total_comment;
 
     return(
-        <section className="py-3 star:pl-7 star:pb-4 ">
+        <section className="py-3 text-right ">
         {/* 5回ループ 星☆☆☆☆☆　*/}
         {[...Array(5)].map((star, i) => {
     const ratingValue = i + 1

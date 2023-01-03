@@ -78,7 +78,7 @@ return <div>
         <div>
             {inputs.photo != null ?<>
         <img src={ "http://127.0.0.1:5173/storage/app/public/images/" +inputs.photo}  alt={inputs.photo} className="rounded-t-lg object-cover sm:w-full pt-6"/>
-        <section className="star:flex justify-between pt-4">
+        <section className="pt-4">
             <div>
                 <p>{ inputs.title }</p>
 
@@ -92,7 +92,7 @@ return <div>
         const average= total_rating / total_comment;
 
     return(
-        <section className="py-3 star:pl-7 star:pb-4 ">
+        <section className="py-3 text-right ">
         {[...Array(5)].map((star, i) => {
 
     const ratingValue = i + 1

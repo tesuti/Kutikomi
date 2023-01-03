@@ -111,15 +111,15 @@ console.log(commentField);
 
         <ul className={`
             ${sidebar ? '':' hidden'}`}>
-            <div ref={ref} className='bg-white py-3.5 px-4 right-14 bottom-0 rounded absolute shadow-md'>
+            <div ref={ref} className='bg-white right-14 bottom-0 rounded absolute shadow-md'>
                 <li className='text-xl'>
                     <div>
-                        <button onClick={() => setOpenEdit(!openEdit)} className="text-gray-800 hover:text-gray-400 duration-500 mb-2.5" >編集
+                        <button onClick={() => setOpenEdit(!openEdit)} className="text-gray-800 hover:text-gray-400 duration-500 px-4 pt-3.5 pb-1.5" >編集
                         </button>
                     </div>
                 </li>
                 <li  onClick={() => setOpenDelete(!openDelete)} className=' text-xl '>
-                <button className="text-gray-800 hover:text-gray-400 duration-500" >削除</button>
+                <button className="text-gray-800 hover:text-gray-400 duration-500 px-4 pb-3.5 pt-1.5" >削除</button>
             </li>
         </div>
         </ul>
@@ -128,7 +128,7 @@ console.log(commentField);
     <div className={`
     ${openEdit ? 'z-40 fixed inset-0 bg-black bg-opacity-25  flex justify-center items-center':' hidden'}`}>
         <div className='w-[600px] flex flex-col'>
-                <div ref={ref} className="bg-white p-2 rounded">
+                <div ref={ref} className="bg-white px-4 py-3 rounded">
                     <div className='mb-7'>
 
                         <label className='block mb-2 text-sm font-medium text-gray-900'>評価</label>
@@ -176,7 +176,7 @@ console.log(commentField);
         <div className={`
             ${openDelete ? 'z-40 fixed inset-0 bg-black bg-opacity-25  flex justify-center items-center':' hidden'}`}>
             <div className='w-[400px] flex flex-col'>
-                <div ref={ref} className="bg-white p-2 rounded">
+                <div ref={ref} className="bg-white px-4 py-3 rounded">
                     <div className='mb-3'>
                         <p>コメントの削除</p>
                         <p>コメントを完全に削除しますか？</p>

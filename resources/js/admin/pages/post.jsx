@@ -57,15 +57,24 @@ return (
                 {error&&title.length<=0?
                     <p className='text-red-700'>入力してくさい</p>:""
                 }
+                {error&&title.length>=256?
+                    <p className='text-red-700'>255文字まで</p>:""
+                }
                 <label>内容</label>
                 <textarea  type="text" name='body' className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
                 value={body || ''}
                 onChange={(e) => setBody(e.target.value)}
                 />
-                {error&&title.length<=0?
-                    <p className='text-red-700'>入力してくさい</p>:""
+                {error&&body.length>=256?
+                    <p className='text-red-700'>255文字まで</p>:""
+                }
+                {error&&body.length==0?
+                    <p className='text-red-700'>入力して下さい</p>:""
                 }
                 <label className='py-4'  htmlFor="images">画像</label>
+                {error&&photo.filepreview === null?
+                    <p className='text-red-700'>画像が見つかりません</p>:""
+                }
                 <div>
                     <input
                         accept="image/* .png .jpg .jpeg"

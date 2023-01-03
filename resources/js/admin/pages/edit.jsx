@@ -69,8 +69,10 @@ function edit() {
             <div className='m-auto max-w-lg'>
             {inputs.photo != null ?<>
                 <img src={ "http://127.0.0.1:5173/storage/app/public/images/" +inputs.photo}  alt={inputs.photo} className="rounded-t-lg object-cover pt-6 sm:w-full"  />
-                <div className='pt-4'>
+                <div className='pt-4 break-all'>
+                    <p className='underline decoration-solid text-xl pb-2.5'>タイトル</p>
                     <p>{ inputs.title }</p>
+                    <p className='pt-3 pb-2.5 underline decoration-solid text-xl'>内容</p>
                     <p>{ inputs.body }</p>
                 </div>
                 </>:<div className="animate-pulse">

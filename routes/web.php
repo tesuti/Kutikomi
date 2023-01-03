@@ -36,6 +36,18 @@ require __DIR__.'/auth.php';
 Route::get('/admin', function () {
     return view('admin');
 });
+Route::get('admin/post', function () {
+    return view('admin');
+});
+Route::get('admin/user', function () {
+    return view('admin');
+});
+Route::get('admin/view/{posts}', function () {
+    return view('admin');
+});
+Route::get('admin/edit/{posts}', function () {
+    return view('admin');
+});
 
 require __DIR__.'/adminauth.php';
 
