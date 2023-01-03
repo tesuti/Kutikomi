@@ -43,8 +43,8 @@ function home() {
                                         <div className='mb-1.5'>
                                             <img src={ "http://127.0.0.1:5173/storage/app/public/images/" +posts.photo}  alt={posts.photo}  className='rounded-xl'/>
                                         </div>
-                                            <h3 className='text-base'>{ posts.title}</h3>
-                                            <p className='home__posts-body break-all text-sm font-normal text-gray-600'>{ posts.body}</p>
+                                            <h3 className='text-base home__posts-body break-all '>{ posts.title}</h3>
+                                            <p className='truncate text-sm font-normal text-gray-600'>{ posts.body}</p>
                                     </Link>
                                     </div>
                                         <div  className='flex justify-center items-center gap-4 pt-4'>

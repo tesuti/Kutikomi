@@ -3,6 +3,7 @@ import { Routes, Route, Link } from 'react-router-dom';
 import Home from '../pages/home';
 import Rating from '../pages/rating';
 import View from '../pages/view'
+import UserName from './userName';
 
 function Guest() {
     const login = () =>{
@@ -19,7 +20,7 @@ function Guest() {
  <div className='shadow-md w-full sticky top-0 left-0 z-50'>
           <div className='flex items-center justify-between bg-white py-4 md:px-10 px-7'>
           <div className='font-bold text-xl cursor-pointer flex  item-center font-[Poppins] text-gray-800'>
-          <div onClick={showSidebar} className='text-3xl  -8 top-6 cursor-pointer md:hidden'>
+          <div onClick={showSidebar} className='text-3xl  top-6 cursor-pointer md:hidden'>
             {sidebar ? 'X' : '='}
           </div>
             <Link  to="/">

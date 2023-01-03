@@ -45,7 +45,7 @@ const  Comments = () => {
         fetchUserDetail();
         fetchComment();
     },[]);
-
+console.log(commentField);
     const fetchComment = () =>{
         axios.get('/comment/'+ id).then((res)=>{
 

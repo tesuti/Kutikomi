@@ -28,7 +28,7 @@ const Create = () => {
     const submitForm = (e)=>{
         e.preventDefault();
         axios.post('/comment',data).then((res)=>{
-            window.location.reload()
+            window.location.reload();
         })
     }
 

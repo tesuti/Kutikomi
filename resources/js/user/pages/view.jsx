@@ -78,7 +78,7 @@ return <div>
         <div>
             {inputs.photo != null ?<>
         <img src={ "http://127.0.0.1:5173/storage/app/public/images/" +inputs.photo}  alt={inputs.photo} className="rounded-t-lg object-cover sm:w-full pt-6"/>
-        <section className="flex justify-between pt-4">
+        <section className="star:flex justify-between pt-4">
             <div>
                 <p>{ inputs.title }</p>
 
@@ -92,7 +92,7 @@ return <div>
         const average= total_rating / total_comment;
 
     return(
-        <section>
+        <section className="py-3 star:pl-7 star:pb-4 ">
         {[...Array(5)].map((star, i) => {
 
     const ratingValue = i + 1
@@ -115,13 +115,13 @@ return <div>
     })}
 
         　{Math.floor(average * 100) / 100}
-        <p>コメント：{total_comment}</p>
+        　({total_comment})
         </section>
     );
     },0)}
     </div>
 </section>
-<p className="break-all pb-3">{ inputs.body }</p>
+<p className="break-all pb-8">{ inputs.body }</p>
 </>:<div className="animate-pulse">
         <div className=" bg-slate-700 pb-[57%] mt-6">　</div>
         <div className="flex-1 space-y-6 py-1">
