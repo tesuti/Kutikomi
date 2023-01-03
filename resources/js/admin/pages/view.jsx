@@ -50,7 +50,7 @@ export default function View(props){
         <img src={ "http://127.0.0.1:5173/storage/app/public/images/" +inputs.photo}  alt={inputs.photo} className="rounded-t-lg object-cover sm:w-full pt-6  "/>
         <section className="pt-4 break-all">
             <div>
-                <p>{ inputs.title }</p>
+                <p className="whitespace-pre-wrap">{ inputs.title }</p>
 
             </div>
             <div>
@@ -90,7 +90,7 @@ export default function View(props){
     },0)}
     </div>
 </section>
-<p className="break-all pb-8">{ inputs.body }</p>
+<p className="break-all pb-8 whitespace-pre-wrap">{ inputs.body }</p>
 </>:<div className="animate-pulse">
         <div className=" bg-slate-700 pb-[57%] mt-6">　</div>
         <div className="flex-1 space-y-6 py-1">

@@ -52,6 +52,10 @@ function edit() {
     }
     const submitEdit = async(e)=>{
         e.preventDefault();
+        if(title.length==0||body.length==0 || photo.filepreview === null){
+            setError(true)
+        }
+
         await axios.post('/post/'+id,data, {
             headers: {
                 'content-type': 'multipart/form-data',
@@ -71,9 +75,9 @@ function edit() {
                 <img src={ "http://127.0.0.1:5173/storage/app/public/images/" +inputs.photo}  alt={inputs.photo} className="rounded-t-lg object-cover pt-6 sm:w-full"  />
                 <div className='pt-4 break-all'>
                     <p className='underline decoration-solid text-xl pb-2.5'>タイトル</p>
-                    <p>{ inputs.title }</p>
+                    <p className='whitespace-pre-wrap'>{ inputs.title }</p>
                     <p className='pt-3 pb-2.5 underline decoration-solid text-xl'>内容</p>
-                    <p>{ inputs.body }</p>
+                    <p className='whitespace-pre-wrap'>{ inputs.body }</p>
                 </div>
                 </>:<div className="animate-pulse">
         <div className=" bg-slate-700 pb-[57%] mt-6">　</div>
@@ -97,12 +101,27 @@ function edit() {
                         value={title || ''}
                         onChange={(e) => setTitle(e.target.value)}
                         />
+                        {error&&title.length<=0?
+                            <p className='text-red-700'>入力してくさい</p>:""
+                        }
+                        {error&&title.length>=256?
+                            <p className='text-red-700'>255文字まで</p>:""
+                        }
                         <label>内容</label>
-                        <textarea  type="text" name='body' className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
+                        <textarea  type="text" name='body' maxlength="155" rows="4" className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
                         value={body || ''}
                         onChange={(e) => setBody(e.target.value)}
                         />
+                        {error&&body.length>=256?
+                            <p className='text-red-700'>255文字まで</p>:""
+                        }
+                        {error&&body.length==0?
+                            <p className='text-red-700'>入力して下さい</p>:""
+                        }
                         <label className='pt-4 pb-2'  htmlFor="images">画像</label>
+                        {error&&photo.filepreview === null?
+                            <p className='text-red-700'>画像が見つかりません</p>:""
+                        }
                         <div className='flex  mb-3'>
                             <input
                                 accept="image/* .png .jpg .jpeg"

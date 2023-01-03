@@ -33,7 +33,7 @@ function home() {
     function renderElement(){
         if(posts){
             return(
-                <div className=' w-h h-screen auto-mt'>
+                <div className=' w-h  auto-mt'>
                     <div className=" container  max-w-5xl mx-auto p-0 sm:py-36 px-2" >
                         <div className='pt-3 grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-6'>
                             {posts.map((posts, i)=>(
@@ -63,7 +63,7 @@ function home() {
                                         <>
                                         <div className={`${openDelete ? 'z-40 fixed inset-0 bg-black bg-opacity-25  flex justify-center items-center':' hidden'}`}>
                                             <div className='w-[400px] flex flex-col'>
-                                                <div ref={ref} className="bg-white p-2 rounded">
+                                                <div ref={ref} className="bg-white px-4 py-3 rounded">
                                                     <div className='mb-3'>
                                                         <p>コメントの削除</p>
                                                         <p>コメントを完全に削除しますか？</p>

@@ -29,7 +29,7 @@ function Post() {
 
     const submitForm = async(e) =>{
         e.preventDefault();
-        if(title.length==0||body.length==0){
+        if(title.length==0||body.length==0 || photo.filepreview === null){
             setError(true)
         }
 

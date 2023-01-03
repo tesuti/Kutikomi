@@ -93,7 +93,9 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         $request->validate([
-        'photo' => 'required',
+            'photo' => 'required',
+            'title' => 'required',
+            'body' => 'required',
         ]);
         $destination = 'storage/images/'.$post->photo;
         if(File::exists($destination))
