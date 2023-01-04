@@ -47,7 +47,7 @@ function home() {
                                             <p className='truncate text-sm font-normal text-gray-600'>{ posts.body}</p>
                                     </Link>
                                     </div>
-                                        <div  className='flex justify-center items-center gap-4 pt-4'>
+                                        <div  className='flex justify-center items-center gap-4 pt-4  '>
                                             <Link to={{ pathname :"edit/"+posts.id }}>
                                             <button className=' text-white bg-blue-700 hover:bg-blue-800 focus:ring- focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center' type='button'> 編集
                                             </button>
