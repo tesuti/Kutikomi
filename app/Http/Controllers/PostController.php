@@ -14,9 +14,14 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $post = Post::with('comments')->orderBy('created_at', 'DESC')->get();
+        if($request->search){
+            $post =  Post::where('title','like','%' .$request->search.'%')
+            ->orWhere('body', 'like','%' .$request->search.'%')->get();
+        }else{
+            $post = Post::with('comments')->orderBy('created_at', 'DESC')->get();
+        }
         return response()->json($post);
 
     }

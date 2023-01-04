@@ -62,6 +62,7 @@ Route::resource('user',Controllers\AuthController::class);
 Route::get('admin/me', [AdminController::class,'me'])->middleware(['auth:admin']);
 
 Route::resource('post',Controllers\PostController::class);
+Route::post('/post',[Controllers\PostController::class,'index']);
 
 Route::resource('comment',Controllers\CommentController::class);
 
