@@ -61,7 +61,9 @@ return (
                     <p className='text-red-700'>255文字まで</p>:""
                 }
                 <label>内容</label>
-                <textarea  type="text" name='body' className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
+                <textarea  type="text" name='body' 
+                rows="4"
+                className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
                 value={body || ''}
                 onChange={(e) => setBody(e.target.value)}
                 />
@@ -92,7 +94,7 @@ return (
                     : <div className=" bg-slate-700 pb-[57%] mb-3"></div>
                     }
                 </div>
-            <button type='button' className="text-white bg-blue-700 hover:bg-blue-800 focus:ring- focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"  onClick={submitForm}>登録</button>
+            <button type='button' className="text-white bg-blue-600 hover:bg-blue-500 focus:ring- focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"  onClick={submitForm}>登録</button>
             </div>
         </div>
     </div>

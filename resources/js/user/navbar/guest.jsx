@@ -4,6 +4,7 @@ import Home from '../pages/home';
 import Rating from '../pages/rating';
 import View from '../pages/view'
 import UserName from './userName';
+import { HiBars3,HiXMark } from "react-icons/hi2";
 
 function Guest() {
     const login = () =>{
@@ -21,7 +22,7 @@ function Guest() {
           <div className='flex items-center justify-between bg-white py-4 md:px-10 px-7'>
           <div className='font-bold text-xl cursor-pointer flex  item-center font-[Poppins] text-gray-800'>
           <div onClick={showSidebar} className='text-3xl  top-6 cursor-pointer md:hidden'>
-            {sidebar ? 'X' : '='}
+            {sidebar ?  <HiXMark /> : <HiBars3 />}
           </div>
             <Link  to="/">
                 <p className="text-gray-800 hover:text-gray-400 duration-500" >S/A</p>

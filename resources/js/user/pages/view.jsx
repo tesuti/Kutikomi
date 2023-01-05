@@ -5,6 +5,8 @@ import { FaStar } from 'react-icons/fa';
 import './App.css';
 import Comments from "./componets/View/Comments";
 import Create from "./componets/View/Create";
+
+
 export default function View(props){
 
     const [inputs, setInputs] = useState({});

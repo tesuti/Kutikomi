@@ -5,6 +5,11 @@ import { FaStar } from 'react-icons/fa';
 
 function rating() {
     const [posts, setPosts] = useState([]);
+    const [visible, setVisible] = useState(10);
+
+    const MorePosts= () =>{
+        setVisible((visible) => visible + 4);
+    }
 
     useEffect(() =>{
         fetchAllPost();
@@ -21,7 +26,7 @@ function rating() {
         <div className=" container  max-w-4xl mx-auto p-0 py-36 px-2">
         <div className='grid  grid-cols-1 gap-6 pt-8'>
 
-       {posts.map((posts, i)=>(
+       {posts.slice(0,visible).map((posts, i)=>(
           <Link to={{ pathname :"/view/"+posts.posts.id }} key={i}>
             <div className='sm:flex mb-7 bg-white rounded-lg shadow-inner '>
                     <p className='p-3'>{++i}</p>
@@ -56,6 +61,9 @@ function rating() {
 
 
           ))}
+        </div>
+        <div className='py-3'>
+            <button className='py-2.5 px-5 rounded bg-slate-200 text-zinc-700' onClick={MorePosts}>表示</button>
         </div>
       </div>
       </div>

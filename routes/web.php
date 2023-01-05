@@ -36,16 +36,16 @@ require __DIR__.'/auth.php';
 Route::get('/admin', function () {
     return view('admin');
 });
-Route::get('admin/post', function () {
+Route::get('/admin/post', function () {
     return view('admin');
 });
-Route::get('admin/user', function () {
+Route::get('/admin/user', function () {
     return view('admin');
 });
-Route::get('admin/view/{posts}', function () {
+Route::get('/admin/view/{posts}', function () {
     return view('admin');
 });
-Route::get('admin/edit/{posts}', function () {
+Route::get('/admin/edit/{posts}', function () {
     return view('admin');
 });
 
@@ -62,7 +62,7 @@ Route::resource('user',Controllers\AuthController::class);
 Route::get('admin/me', [AdminController::class,'me'])->middleware(['auth:admin']);
 
 Route::resource('post',Controllers\PostController::class);
-Route::post('/post',[Controllers\PostController::class,'index']);
+Route::post('/posts',[Controllers\PostController::class,'index']);
 
 Route::resource('comment',Controllers\CommentController::class);
 

@@ -7,21 +7,21 @@ import View from '../pages/view'
 import User from '../pages/user'
 import Edit from '../pages/edit'
 import UserName from './userName';
-
+import { HiBars3,HiXMark } from "react-icons/hi2";
 
 function Auth() {
-    
+
 
 
     let [sidebar, setSidebar]= useState(false);
     const showSidebar = () => setSidebar(!sidebar);
     return (
-        <div className='bg-stone-50'>
+        <div className=''>
         <div className='shadow-md w-full sticky top-0 left-0 z-50'>
           <div className='flex items-center justify-between bg-white py-4 md:px-10 px-7'>
           <div className='font-bold text-xl cursor-pointer flex  item-center font-[Poppins] text-gray-800'>
           <div onClick={showSidebar} className='text-3xl  -8 top-6 cursor-pointer md:hidden'>
-            {sidebar ? 'X' : '='}
+            {sidebar ? <HiXMark /> : <HiBars3 />}
           </div>
             <Link  to="/admin">
                 <p className="text-lg text-gray-800 hover:text-gray-400 duration-500" >S/A管理者画面</p>

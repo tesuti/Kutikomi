@@ -4,8 +4,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { FaStar } from 'react-icons/fa';
 import useOutsideClick from "./useOutsideClick";
-// import moment from 'moment';
-// import 'moment/locale/ja';
+import { HiEllipsisVertical} from "react-icons/hi2";
 
 const  Comments = () => {
     const [userdetail,setUserdetail] = useState('');
@@ -45,7 +44,7 @@ const  Comments = () => {
         fetchUserDetail();
         fetchComment();
     },[]);
-console.log(commentField);
+    
     const fetchComment = () =>{
         axios.get('/comment/'+ id).then((res)=>{
 
@@ -104,7 +103,7 @@ console.log(commentField);
     <div>
     {/* :を押したidを取得 */}
     <div onClick={() =>{setPopup(commentField.id)}} >
-        <button  className='p-4 hover:text-purple-600 ' onClick={() => setSidebar(!sidebar)}>:</button>
+        <button  className='p-4 text-black ' onClick={() => setSidebar(!sidebar)}><HiEllipsisVertical /></button>
     </div>
     {popup == commentField.id ?
         <>
