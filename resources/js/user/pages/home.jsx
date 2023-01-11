@@ -21,17 +21,16 @@ function home() {
     };
     const fetchAllPost = async() =>{
             await axios.post('/posts',data).then(res=>{
-                setPosts(res.data);
+                    setPosts(res.data);
             })
     }
+
     const reload = () =>{
         window.location.reload();
     }
 
     return (
     <div>
-
-
 <div className=' w-h  auto-mt'>
             <div className=" container  max-w-5xl mx-auto p-0 sm:py-36 px-2" >
                 <div className='flex pt-3'>
@@ -49,7 +48,7 @@ function home() {
                 <div className='pt-3 grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-6'>
                     {posts.slice(0,visible).map((posts, i)=>(
                         <div  key={i}>
-                            <Link to={{ pathname :"/view/"+posts.id }}>
+                            <Link to={{ pathname :"/sa/view/"+posts.id }}>
                                 <div className='mb-1.5'>
                                     <img src={ "http://127.0.0.1:5173/storage/app/public/images/" +posts.photo}  alt={posts.photo}  className='rounded-xl'/>
                                 </div>
@@ -61,9 +60,10 @@ function home() {
                         </div>
                     ))}
                 </div>
-                <div className='py-3'>
+                <div className='py-3 bottom-0'>
                     <button className='py-2.5 px-5 rounded bg-slate-200 text-zinc-700' onClick={MorePosts}>表示</button>
                 </div>
+
             </div>
         </div>
     </div>

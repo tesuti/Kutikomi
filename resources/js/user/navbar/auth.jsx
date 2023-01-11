@@ -13,14 +13,14 @@ function Auth() {
     let [sidebar, setSidebar]= useState(false);
     const showSidebar = () => setSidebar(!sidebar);
     return (
-        <div className=''>
+        <div >
         <div className='shadow-md w-full sticky top-0 left-0 z-50'>
           <div className='flex items-center justify-between bg-white py-4 md:px-10 px-7'>
           <div className='font-bold text-xl cursor-pointer flex  item-center font-[Poppins] text-gray-800'>
           <div onClick={showSidebar} className='text-3xl top-6 cursor-pointer md:hidden'>
             {sidebar ? <HiXMark /> : <HiBars3 />}
           </div>
-            <Link  to="/">
+            <Link  to="/sa">
                 <p className="text-gray-800 hover:text-gray-400 duration-500" >S/A</p>
             </Link>
           </div>
@@ -32,12 +32,12 @@ function Auth() {
             onClick={showSidebar}
             >
             <li className='md:ml-8 text-xl md:my-0 my-7 '>
-                <Link  to="/">
+                <Link  to="/sa">
                     <p className="text-gray-800 hover:text-gray-400 duration-500" >ホーム</p>
                 </Link>
             </li>
             <li className='md:ml-8 text-xl md:my-0 my-7'>
-                <Link  to="/rating">
+                <Link  to="/sa/rating">
                     <p className="text-gray-800 hover:text-gray-400 duration-500" >ランキング</p>
                 </Link>
             </li>
@@ -54,9 +54,9 @@ function Auth() {
 
         <div>
                 <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/rating" element={<Rating />} />
-                    <Route path='/view/:id' element={<View />} />
+                    <Route path="/sa" element={<Home />} />
+                    <Route path="/sa/rating" element={<Rating />} />
+                    <Route path='/sa/view/:id' element={<View />} />
                 </Routes>
             </div>
         </div>

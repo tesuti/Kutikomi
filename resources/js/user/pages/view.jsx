@@ -7,7 +7,7 @@ import Comments from "./componets/View/Comments";
 import Create from "./componets/View/Create";
 
 
-export default function View(props){
+export default function View(){
 
     const [inputs, setInputs] = useState({});
 
@@ -58,20 +58,6 @@ const login = () =>{
     window.location.replace("/login")
 }
 
-function renderElement(){
-    if(userdetail){
-return <div>
-        <Create />
-    </div>
-
-    }
-    else{
-        // ログインしていないときログイン画面へ移動する
-        return <div>
-        <button  className='px-5 py-2.5 mb-7 text-center bg-slate-200  hover:bg-slate-300 rounded' onClick={login}>コメント</button>
-</div>
-    }
-}
 
     return(
         // 画像と評価の平均値を表示
@@ -141,8 +127,10 @@ return <div>
 
         </div>
 
-        {/* 投稿フォーム */}
-        { renderElement() }
+        {/* ログイン画面へ */}
+        {userdetail ? <Create /> : <div>
+        <button  className='px-5 py-2.5 mb-7 text-center bg-slate-200  hover:bg-slate-300 rounded' onClick={login}>コメント</button>
+        </div>     }
 
     <div>
 

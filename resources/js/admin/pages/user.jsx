@@ -71,7 +71,6 @@ return (
                     </div>
                 </div>
             </>:''}
-  {/* onClick={()=>{deleteUser(user.id)}} */}
             </div>
             ))}
 

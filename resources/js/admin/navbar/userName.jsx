@@ -55,7 +55,7 @@ window.addEventListener('click',(e)=>{
             <li className='p-2 text-lg cursor-pointer rounded hover:bg-blue-100'>
                 <button
                 onClick={register}
-                className="text-gray-800 hover:text-gray-400 duration-500">新規登録
+                className="text-gray-800 hover:text-gray-400 duration-500 ">新規登録
                 </button>
             </li>
             <li onClick={() => setOpen(false)} className=

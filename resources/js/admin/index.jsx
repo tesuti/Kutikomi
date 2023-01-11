@@ -15,18 +15,10 @@ function Index() {
             setUserdetail(res.data);
         });
     }
-    function renderElement(){
-        if(!userdetail){
-            return <Guest />
-        }else{
-            return <Auth />
-        }
-
-    }
 
     return(
         <>
-            { renderElement() }
+            {!userdetail ? <Guest /> : <Auth />}
         </>
     )
 

@@ -7,12 +7,6 @@ import UserName from './userName';
 import { HiBars3,HiXMark } from "react-icons/hi2";
 
 function Guest() {
-    const login = () =>{
-        window.location.replace("/login")
-    }
-    const register = () =>{
-        window.location.replace("/register")
-    }
 
     let [sidebar, setSidebar]= useState(false);
     const showSidebar = () => setSidebar(!sidebar);
@@ -45,19 +39,10 @@ function Guest() {
                     <p className="text-gray-800 hover:text-gray-400 duration-500" >ランキング</p>
                 </Link>
             </li>
-            <li className='md:ml-8 text-xl md:my-0 my-7'>
-                <button
-                onClick={login}
-                className="text-gray-800 hover:text-gray-400 duration-500">ログイン
-                </button>
-            </li>
-            <li className='md:ml-8 text-xl md:my-0 my-7'>
-                <button
-                    onClick={register}
-                    className="text-gray-800 hover:text-gray-400 duration-500">新規登録
-                </button>
-            </li>
           </ul>
+          <div  className=' right-8 top-6 cursor-pointer '>
+            <UserName />
+          </div>
           </div>
           </div>
         </div>

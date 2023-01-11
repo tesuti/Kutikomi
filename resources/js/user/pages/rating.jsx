@@ -27,7 +27,7 @@ function rating() {
         <div className='grid  grid-cols-1 gap-6 pt-8'>
 
        {posts.slice(0,visible).map((posts, i)=>(
-          <Link to={{ pathname :"/view/"+posts.posts.id }} key={i}>
+          <Link to={{ pathname :"/sa/view/"+posts.posts.id }} key={i}>
             <div className='sm:flex mb-7 bg-white rounded-lg shadow-inner '>
                     <p className='p-3'>{++i}</p>
                     <img  className='object-cover sm:w-3/12 '  src={ "http://127.0.0.1:5173/storage/app/public/images/" +posts.posts.photo} alt={posts.posts.photo} />

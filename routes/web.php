@@ -15,24 +15,36 @@ use App\Http\Controllers;
 |
 */
 
-
-Route::get('/', function () {
+// auth
+Route::get('/sa', function () {
     return view('welcome');
 });
-Route::get('/view/{posts}', function () {
+Route::get('/sa/view/{posts}', function () {
+    return view('welcome');
+});
+Route::get('/sa/rating', function () {
+    return view('welcome');
+});
+
+// Route::get('/sa/dashboard', function () {
+//     return view('welcome');
+// })->middleware(['auth'])->name('dashboard');
+
+
+require __DIR__.'/auth.php';
+
+// guest
+Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/rating', function () {
     return view('welcome');
 });
-
-Route::get('/dashboard', function () {
+Route::get('/view/{posts}', function () {
     return view('welcome');
-})->middleware(['auth'])->name('dashboard');
+});
 
-
-require __DIR__.'/auth.php';
-
+// admin
 Route::get('/admin', function () {
     return view('admin');
 });
