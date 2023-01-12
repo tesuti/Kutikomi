@@ -7,6 +7,7 @@ function home() {
     const [posts, setPosts] = useState([]);
     const [search, setSearch] = useState();
     const [visible, setVisible] = useState(12);
+    const [userdetail,setUserdetail] = useState('');
 
     const MorePosts= () =>{
         setVisible((visible) => visible + 4);
@@ -14,11 +15,17 @@ function home() {
 
     useEffect(() =>{
         fetchAllPost();
+        fetchUserDetail();
     },[]);
 
     const data = {
         search:search,
     };
+    const fetchUserDetail = () =>{
+        axios.get('/me').then((res)=>{
+            setUserdetail(res.data);
+    });
+}
     const fetchAllPost = async() =>{
             await axios.post('/posts',data).then(res=>{
                     setPosts(res.data);
@@ -48,7 +55,8 @@ function home() {
                 <div className='pt-3 grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-6'>
                     {posts.slice(0,visible).map((posts, i)=>(
                         <div  key={i}>
-                            <Link to={{ pathname :"/sa/view/"+posts.id }}>
+                            {userdetail ? <>
+                                <Link to={{ pathname :"/sa/view/"+posts.id }}>
                                 <div className='mb-1.5'>
                                     <img src={ "http://127.0.0.1:5173/storage/app/public/images/" +posts.photo}  alt={posts.photo}  className='rounded-xl'/>
                                 </div>
@@ -57,6 +65,18 @@ function home() {
                                     <p className='truncate text-sm font-normal text-gray-600'>{ posts.body}</p>
                                 </div>
                             </Link>
+                            </> : <>
+                            <Link to={{ pathname :"/view/"+posts.id }}>
+                                <div className='mb-1.5'>
+                                    <img src={ "http://127.0.0.1:5173/storage/app/public/images/" +posts.photo}  alt={posts.photo}  className='rounded-xl'/>
+                                </div>
+                                <div className=''>
+                                    <h3 className='text-base home__posts-body break-all  font-normal '>{ posts.title}</h3>
+                                    <p className='truncate text-sm font-normal text-gray-600'>{ posts.body}</p>
+                                </div>
+                            </Link>
+                            </> }
+
                         </div>
                     ))}
                 </div>
