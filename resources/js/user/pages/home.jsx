@@ -41,7 +41,7 @@ function home() {
 <div className=' w-h  auto-mt'>
             <div className=" container  max-w-5xl mx-auto p-0 sm:py-36 px-2" >
                 <div className='flex pt-3'>
-                    <input type="text" name='comment' className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
+                    <input type="search" name='comment' className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
                     placeholder='検索'
                         value={search || ''}
                         onChange={(e) => setSearch(e.target.value)}

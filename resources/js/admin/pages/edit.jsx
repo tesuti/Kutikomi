@@ -97,7 +97,7 @@ function edit() {
                 <div className=' bg-white p-4 rounded md:w-[500px]'>
                     <div>
                         <label>タイトル</label>
-                        <input type="text" name='title' 
+                        <input type="text" name='title'
                         className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
                         value={title || ''}
                         onChange={(e) => setTitle(e.target.value)}

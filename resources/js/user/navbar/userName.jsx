@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const userName = () => {
     const [userdetail, setUserdetail] = useState('');
@@ -8,6 +9,8 @@ const userName = () => {
     const  menuRef =  useRef();
     const imgRef = useRef();
 
+    const navigate = useNavigate();
+    
     useEffect(() =>{
         fetchUserDetail();
     },[]);
@@ -20,9 +23,11 @@ const userName = () => {
         window.location.replace("/register")
     }
 
+
     const logoutUser = (e)=>{
         e.preventDefault();
         axios.post('/logout').then((res)=>{
+            navigate("/");
             window.location.reload();
         })
     }
