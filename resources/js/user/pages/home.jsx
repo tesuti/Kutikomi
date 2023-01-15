@@ -55,10 +55,11 @@ function home() {
                 <div className='pt-3 grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-6'>
                     {posts.slice(0,visible).map((posts, i)=>(
                         <div  key={i}>
+                            {/* ログイン状態で表示するurlを変える */}
                             {userdetail ? <>
                                 <Link to={{ pathname :"/sa/view/"+posts.id }}>
                                 <div className='mb-1.5'>
-                                    <img src={ "http://127.0.0.1:5173/storage/app/public/images/" +posts.photo}  alt={posts.photo}  className='rounded-xl'/>
+                                    <img src={ "http://127.0.0.1:5173/storage/app/public/images/" +posts.photo}  alt={posts.photo}  className='rounded-xl aspect-video object-cover'/>
                                 </div>
                                 <div className=''>
                                     <h3 className='text-base home__posts-body break-all  font-normal '>{ posts.title}</h3>
@@ -68,7 +69,7 @@ function home() {
                             </> : <>
                             <Link to={{ pathname :"/view/"+posts.id }}>
                                 <div className='mb-1.5'>
-                                    <img src={ "http://127.0.0.1:5173/storage/app/public/images/" +posts.photo}  alt={posts.photo}  className='rounded-xl'/>
+                                    <img src={ "http://127.0.0.1:5173/storage/app/public/images/" +posts.photo}  alt={posts.photo}  className='rounded-xl aspect-video object-cover'/>
                                 </div>
                                 <div className=''>
                                     <h3 className='text-base home__posts-body break-all  font-normal '>{ posts.title}</h3>

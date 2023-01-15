@@ -62,7 +62,7 @@ function home() {
                                     <div className='hover:shadow-sm hover:bg-white'>
                                     <Link to={{ pathname :"/admin/view/"+posts.id }}>
                                         <div className='mb-1.5'>
-                                            <img src={ "http://127.0.0.1:5173/storage/app/public/images/" +posts.photo}  alt={posts.photo}  className='rounded-xl'/>
+                                            <img src={ "http://127.0.0.1:5173/storage/app/public/images/" +posts.photo}  alt={posts.photo}  className='rounded-xl aspect-video object-cover'/>
                                         </div>
                                             <h3 className='text-base home__posts-body break-all '>{ posts.title}</h3>
                                             <p className='truncate text-sm font-normal text-gray-600'>{ posts.body}</p>

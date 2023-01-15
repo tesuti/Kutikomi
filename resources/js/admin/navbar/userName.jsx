@@ -52,15 +52,15 @@ window.addEventListener('click',(e)=>{
                 'p-2 text-lg' >
                 <p className="text-gray-800 duration-500">{userdetail.name}</p>
             </li>
-            <li className='p-2 text-lg cursor-pointer rounded hover:bg-blue-100'>
+            <li className=''>
                 <button
                 onClick={register}
-                className="text-gray-800 hover:text-gray-400 duration-500 ">新規登録
+                className=" text-lg cursor-pointer rounded hover:bg-blue-100 text-gray-800 hover:text-gray-400 duration-500 pl-2 pr-12 py-2">新規登録
                 </button>
             </li>
             <li onClick={() => setOpen(false)} className=
-                'p-2 text-lg cursor-pointer rounded hover:bg-blue-100' >
-                    <button className="text-gray-800 hover:text-gray-400 duration-500" onClick={logoutUser}>ログアウト</button>
+                '' >
+                    <button className="text-lg cursor-pointer rounded hover:bg-blue-100 text-gray-800 hover:text-gray-400 duration-500 pl-2 pr-12 py-2" onClick={logoutUser}>ログアウト</button>
             </li>
           </ul>
         </div>
