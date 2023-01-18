@@ -10,8 +10,8 @@ function Index() {
         fetchUserDetail();
     },[]);
 
-    const fetchUserDetail = async() =>{
-        await axios.get('admin/me').then((res)=>{
+    const fetchUserDetail = () =>{
+        axios.get('admin/me').then((res)=>{
             setUserdetail(res.data);
         });
     }

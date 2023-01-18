@@ -1,20 +1,20 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
 import { FaStar } from 'react-icons/fa';
+import { LoginUser } from '../../User';
+
 
 function rating() {
     const [posts, setPosts] = useState([]);
     const [visible, setVisible] = useState(10);
-    const [userdetail,setUserdetail] = useState('');
-
+    const userdetail =useContext(LoginUser);
     const MorePosts= () =>{
         setVisible((visible) => visible + 4);
     }
 
     useEffect(() =>{
         fetchAllPost();
-        fetchUserDetail();
     },[]);
 
     const fetchAllPost = async() =>{
@@ -23,11 +23,6 @@ function rating() {
         })
     }
 
-    const fetchUserDetail = () =>{
-        axios.get('/me').then((res)=>{
-            setUserdetail(res.data);
-    });
-}
     return (
         <div className=' w-h  auto-mt'>
         <div className=" container  max-w-4xl mx-auto p-0 py-36 px-2">

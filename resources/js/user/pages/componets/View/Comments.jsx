@@ -1,13 +1,14 @@
 
 import axios from 'axios';
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { FaStar } from 'react-icons/fa';
 import useOutsideClick from "./useOutsideClick";
 import { HiEllipsisVertical} from "react-icons/hi2";
+import { LoginUser } from '../../../../User';
 
 const  Comments = () => {
-    const [userdetail,setUserdetail] = useState('');
+    const userdetail =useContext(LoginUser);
     const [commentField, setCommentField] = useState([]);
 
     const [editComment, setEditComment] = useState("");
@@ -17,7 +18,7 @@ const  Comments = () => {
     let [sidebar, setSidebar]= useState(false);
     let [openEdit, setOpenEdit]= useState(false);
     let [openDelete, setOpenDelete]= useState(false);
-
+    const [error,setError]=useState(false);
     const [hover, setHover] = useState(null);
 
     const {id} = useParams();
@@ -36,18 +37,20 @@ const  Comments = () => {
     };
 
     const submitEdit = (id)=>{
+        if(editComment.length==0){
+            setError(true)
+        }
         axios.put('/comment/'+id,editData).then((res)=>{
+            window.location.reload();
         })
     }
 
     useEffect(() =>{
-        fetchUserDetail();
         fetchComment();
     },[]);
-    
+
     const fetchComment = () =>{
         axios.get('/comment/'+ id).then((res)=>{
-
             setCommentField(
                 res.data
             );
@@ -56,15 +59,9 @@ const  Comments = () => {
 
     const deleteComment= (id) =>{
         axios.delete('/comment/'+id).then(res=>{
+            window.location.reload();
         })
     }
-
-    const fetchUserDetail = () =>{
-        axios.get('/me').then((res)=>{
-            setUserdetail(res.data);
-    });
-}
-
 
   return (
     <>
@@ -94,7 +91,7 @@ const  Comments = () => {
                     </label>
                 )
             })}
-            <p>{ commentField.comment}</p>
+            <p className='break-all  whitespace-pre-wrap'>{ commentField.comment}</p>
             {/* <p>{moment( commentField.created_at).fromNow()}</p> */}
 
         </div>
@@ -156,14 +153,20 @@ const  Comments = () => {
         <span>　{editRating}/5</span>
 
             <label className='block mb-2 text-sm font-medium text-gray-900'>コメント</label>
-                <input type="text" name='comment' className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
-                            value={editComment || ''}
-                            onChange={(e) => setEditComment(e.target.value)}
+                <textarea type="text" name='comment' rows="4" className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
+                    value={editComment || ''}
+                    onChange={(e) => setEditComment(e.target.value)}
                         />
+                {error&&editComment.length<=0?
+                    <p className='text-red-700'>入力してくさい</p>:""
+                }
+                {error&&editComment.length>=256?
+                    <p className='text-red-700'>255文字まで</p>:""
+                }
                     </div>
                 <div className='flex justify-center items-center gap-4'>
                         <button className='md:px-5 py-2.5 text-center hover:bg-slate-200 rounded' onClick={() => setOpenEdit(!openEdit)}>キャンセル</button>
-                    <div onClick={() => setOpenEdit(!openEdit)}>
+                    <div >
                         <button className=' text-white bg-blue-700 hover:bg-blue-800 focus:ring- focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center' type='button' onClick={() =>{submitEdit(commentField.id)}}> 編集
                         </button>
                     </div>

@@ -1,19 +1,17 @@
 import axios from 'axios';
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { LoginUser } from '../../User';
+
 
 const userName = () => {
-    const [userdetail, setUserdetail] = useState('');
+    const userdetail =useContext(LoginUser);
     const [open , setOpen] = useState(false);
 
     const  menuRef =  useRef();
     const imgRef = useRef();
 
     const navigate = useNavigate();
-
-    useEffect(() =>{
-        fetchUserDetail();
-    },[]);
 
     const login = () =>{
         window.location.replace("/login")
@@ -31,11 +29,7 @@ const userName = () => {
             window.location.reload();
         })
     }
-    const fetchUserDetail = () =>{
-        axios.get('/me').then((res)=>{
-            setUserdetail(res.data);
-    });
-}
+
 window.addEventListener('click',(e)=>{
     if(e.target !== menuRef.current && e.target !==  imgRef.current){
         setOpen(false);

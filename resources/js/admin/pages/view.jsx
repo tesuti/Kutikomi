@@ -5,10 +5,9 @@ import { FaStar } from 'react-icons/fa';
 // import './App.css';
 import Comments from "./components/View/comments";
 
-export default function View(props){
+export default function View(){
 
     const [inputs, setInputs] = useState({});
-
     const [commentField, setCommentField] = useState([]);
 
     const {id} = useParams();

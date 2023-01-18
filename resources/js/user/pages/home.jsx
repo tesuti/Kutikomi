@@ -1,13 +1,14 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
 import { HiArrowPath } from "react-icons/hi2";
+import { LoginUser } from '../../User';
 
 function home() {
     const [posts, setPosts] = useState([]);
     const [search, setSearch] = useState();
     const [visible, setVisible] = useState(12);
-    const [userdetail,setUserdetail] = useState('');
+    const userdetail =useContext(LoginUser);
 
     const MorePosts= () =>{
         setVisible((visible) => visible + 4);
@@ -15,17 +16,12 @@ function home() {
 
     useEffect(() =>{
         fetchAllPost();
-        fetchUserDetail();
     },[]);
 
     const data = {
         search:search,
     };
-    const fetchUserDetail = () =>{
-        axios.get('/me').then((res)=>{
-            setUserdetail(res.data);
-    });
-}
+
     const fetchAllPost = async() =>{
             await axios.post('/posts',data).then(res=>{
                     setPosts(res.data);

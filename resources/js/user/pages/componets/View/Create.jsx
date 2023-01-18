@@ -10,6 +10,9 @@ const Create = () => {
     const [rating, setRating] = useState("0");
 
     const [hover, setHover] = useState(null);
+
+    const [error,setError]=useState(false);
+
     let [createComment, setCreateComment]= useState(false);
     const {id} = useParams();
 
@@ -27,6 +30,10 @@ const Create = () => {
 
     const submitForm = (e)=>{
         e.preventDefault();
+        if(comment.length==0){
+            setError(true)
+        }
+
         axios.post('/comment',data).then((res)=>{
             window.location.reload();
         })
@@ -66,14 +73,20 @@ const Create = () => {
         </div>
         <div>
             <p>コメント</p>
-            <input type="text" name='comment' className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
+            <textarea type="text" name='comment'rows="4" className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
                 value={comment || ''}
                 onChange={(e) => setComment(e.target.value)}
                 />
+                {error&&comment.length>=256?
+                    <p className='text-red-700'>255文字まで</p>:""
+                }
+                {error&&comment.length==0?
+                    <p className='text-red-700'>入力して下さい</p>:""
+                }
         </div>
     </div>
-        <span onClick={() => setCreateComment(!createComment)}>
-            <button type='button' className="text-white bg-blue-700 hover:bg-blue-800 focus:ring- focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" onClick={submitForm}>登録</button>
+        <span>
+            <button type='button' className="text-white bg-blue-700 hover:bg-blue-800 focus:ring- focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" onClick={submitForm}>コメント</button>
         </span>
     </div>
     </div>

@@ -1,26 +1,24 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FaStar } from 'react-icons/fa';
 import './App.css';
 import Comments from "./componets/View/Comments";
 import Create from "./componets/View/Create";
+import { LoginUser } from "../../User";
 
 
 export default function View(){
 
     const [inputs, setInputs] = useState({});
 
-    const [userdetail,setUserdetail] = useState('');
-
     const [commentField, setCommentField] = useState([]);
-
+    const userdetail =useContext(LoginUser);
     const {id} = useParams();
 
     let total_rating = 0;
 
     useEffect(() =>{
-        fetchUserDetail();
         fetchPost();
         fetchComment();
     },[]);
@@ -45,14 +43,6 @@ export default function View(){
             );
         });
     }
-
-
-
-    const fetchUserDetail = () =>{
-        axios.get('/me').then((res)=>{
-            setUserdetail(res.data);
-    });
-}
 
 const login = () =>{
     window.location.replace("/login")

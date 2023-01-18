@@ -10,6 +10,7 @@ const  Comments = () => {
     const [commentField, setCommentField] = useState([]);
     let [openDelete, setOpenDelete]= useState(false);
     const [popup, setPopup] = useState("");
+
     const ref = useRef();
 
     const {id} = useParams();
@@ -32,6 +33,7 @@ const  Comments = () => {
 
     const deleteComment= (id) =>{
         axios.delete('/comment/'+id).then(res=>{
+            window.location.reload();
         })
     }
 
