@@ -43,7 +43,7 @@ function Auth() {
                 <Link className='text-gray-800 hover:text-gray-400 duration-500' to="/admin">ホーム</Link>
             </li>
             <li className='md:ml-8 text-xl md:my-0 my-7'>
-                <Link className='text-gray-800 hover:text-gray-400 duration-500' to="/admin/post">記事の投稿</Link>
+                <Link className='text-gray-800 hover:text-gray-400 duration-500' to="/admin/post">記事を投稿</Link>
             </li>
             <li className='md:ml-8 text-xl md:my-0 my-7'>
                 <Link className='text-gray-800 hover:text-gray-400 duration-500' to="/admin/user">ユーザー管理</Link>

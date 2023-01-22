@@ -48,7 +48,7 @@ return (
     <div className='container max-w-4xl mx-auto p-0 sm:py-36 px-2 mt-5 w-screen flex justify-center items-center'>
         <div className=' bg-white md:p-4 rounded md:w-[500px]'>
             <div>
-                <h2 className='mb-3'>記事を作成</h2>
+                <h2 className='mb-3'>記事を投稿</h2>
                 <label>タイトル</label>
                 <input type="text" name='title' className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
                 value={title || ''}
@@ -61,7 +61,7 @@ return (
                     <p className='text-red-700'>255文字まで</p>:""
                 }
                 <label>内容</label>
-                <textarea  type="text" name='body' 
+                <textarea  type="text" name='body'
                 rows="4"
                 className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
                 value={body || ''}
@@ -94,7 +94,7 @@ return (
                     : <div className=" bg-slate-700 pb-[57%] mb-3"></div>
                     }
                 </div>
-            <button type='button' className="text-white bg-blue-600 hover:bg-blue-500 focus:ring- focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"  onClick={submitForm}>登録</button>
+            <button type='button' className="text-white bg-blue-600 hover:bg-blue-500 focus:ring- focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"  onClick={submitForm}>投稿</button>
             </div>
         </div>
     </div>

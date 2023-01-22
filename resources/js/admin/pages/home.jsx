@@ -34,6 +34,7 @@ function home() {
 
     const deletePost= (id) =>{
         axios.delete('/post/'+id).then(res=>{
+            window.location.reload();
         })
     }
     const reload = () =>{

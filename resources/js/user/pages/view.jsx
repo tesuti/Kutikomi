@@ -37,7 +37,6 @@ export default function View(){
 
     const fetchComment = () =>{
         axios.get('/comment/'+ id).then((res)=>{
-
             setCommentField(
                 res.data
             );

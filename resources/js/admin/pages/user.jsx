@@ -20,6 +20,7 @@ function User() {
 
     const deleteUser= (id) =>{
         axios.delete('/user/'+id).then(res=>{
+            window.location.reload();
         })
     }
 
@@ -54,8 +55,8 @@ return (
                     <div className='w-[400px] flex flex-col'>
                         <div ref={ref} className="bg-white p-2 rounded">
                             <div className='mb-3'>
-                                <p>コメントの削除</p>
-                                <p>コメントを完全に削除しますか？</p>
+                                <p>ユーザーの削除</p>
+                                <p>ユーザーを完全に削除しますか？</p>
                             </div>
                             <div className='flex justify-center items-center gap-4'>
                                 <div className='md:px-5 py-2.5 text-center hover:bg-slate-200 rounded' >
