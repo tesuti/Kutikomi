@@ -11,7 +11,7 @@ function Index() {
     },[]);
 
     const fetchUserDetail = () =>{
-        axios.get('admin/me').then((res)=>{
+        axios.get('/admin/me').then((res)=>{
             setUserdetail(res.data);
         });
     }
