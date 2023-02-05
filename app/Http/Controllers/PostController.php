@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Facades\File;
-
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -102,12 +102,8 @@ class PostController extends Controller
             'title' => 'required',
             'body' => 'required',
         ]);
-        $destination = 'storage/images/'.$post->photo;
-        if(File::exists($destination))
-        {
-            File::delete($destination);
-        }
-
+        Storage::disk('public')->delete('images/' . $post->photo);
+        
         $name = $request->file('photo')->getClientOriginalName();
         $fileName = time().'.'.$name;
         $request->file('photo')->storeAs('images/', $fileName, 'public');
@@ -130,11 +126,7 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post = Post::find($id);
-        $destination = 'storage/images/'.$post->photo;
-        if(File::exists($destination))
-        {
-            File::delete($destination);
-        }
+        Storage::disk('public')->delete('images/' . $post->photo);
 
         $post->whereId($id)->delete();
         return response()->json('success');
