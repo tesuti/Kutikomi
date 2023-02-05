@@ -63,9 +63,12 @@
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="text-black btn btn-primary">
+                                <a class="btn text-secondary btn-link" href="/login">
+                                    ログイン
+                                </a>
+                                <x-primary-button class="ml-3">
                                     {{ __('登録') }}
-                                </button>
+                                </x-primary-button>
                             </div>
                         </div>
                     </form>

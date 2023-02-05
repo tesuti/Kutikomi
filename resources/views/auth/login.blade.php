@@ -42,10 +42,13 @@
 
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary text-black">
-                                    {{ __('ログイン') }}
-                                </button>
+                                <a class="btn btn-link text-secondary" href="/register">
+                                    新規登録
+                                </a>
 
+                                <x-primary-button class="ml-3">
+                                    {{ __('ログイン') }}
+                                </x-primary-button>
                             </div>
                         </div>
                     </form>
