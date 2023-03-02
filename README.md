@@ -6,3 +6,21 @@
 
 ## URL
 http://xs882876.xsrv.jp
+
+## 機能一覧
+コメント機能
+ランキング機能
+ログイン機能
+ユーザー登録
+検索機能
+
+## 技術一覧
+### バックエンド
+laravel
+
+### フロントエンド
+react.js
+tailwindcss
+
+mysql
+VScode
