@@ -6,6 +6,7 @@
 
 ## URL
 http://xs882876.xsrv.jp
+![動物の口コミサイト](https://user-images.githubusercontent.com/91707110/222446400-69e164d5-0339-4b47-ae68-ef2d5320534b.png)
 
 ## 機能一覧
 コメント機能  
@@ -16,12 +17,13 @@ http://xs882876.xsrv.jp
 
 ## 技術一覧
 ### バックエンド
--laravel　9.5.2
+laravel　9.5.2
 
 ### フロントエンド
--react.js　17.0.2  
--Tailwind CSS  3.2.4
+react.js　17.0.2  
+Tailwind CSS  3.2.4
 
 ### その他
 mysql　15.1  
 VScode
+
