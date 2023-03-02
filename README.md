@@ -8,19 +8,20 @@
 http://xs882876.xsrv.jp
 
 ## 機能一覧
-コメント機能
-ランキング機能
-ログイン機能
-ユーザー登録
-検索機能
+-コメント機能
+-ランキング機能
+-ログイン機能
+-ユーザー登録
+-検索機能
 
 ## 技術一覧
 ### バックエンド
-laravel
+-laravel　9.5.2
 
 ### フロントエンド
-react.js
-tailwindcss
+-react.js　17.0.2
+-Tailwind CSS  3.2.4
 
-mysql
+### その他
+mysql　15.1
 VScode
