@@ -5,7 +5,7 @@
 動物に対して5段階評価とコメントをして順位を決めるサイトです。
 
 ## URL
-http://xs882876.xsrv.jp
+http://xs882876.xsrv.jp  
 ![動物の口コミサイト](https://user-images.githubusercontent.com/91707110/222446400-69e164d5-0339-4b47-ae68-ef2d5320534b.png)
 
 ## 機能一覧
