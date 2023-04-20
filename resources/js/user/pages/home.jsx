@@ -63,9 +63,10 @@ function home() {
                                 </div>
                             </Link>
                             </> : <>
+
                             <Link to={{ pathname :"/view/"+posts.id }}>
                                 <div className='mb-1.5'>
-                                    <img src={ "http://127.0.0.1:5173/storage/app/public/images/" +posts.photo}  alt={posts.photo}  className='rounded-xl aspect-video object-cover'/>
+                                    <img src={ "http://127.0.0.1:5173/storage/app/public/images/"+posts.photo}  alt={posts.photo}  className='rounded-xl aspect-video object-cover'/>
                                 </div>
                                 <div className=''>
                                     <h3 className='text-base home__posts-body break-all  font-normal '>{ posts.title}</h3>
@@ -77,9 +78,9 @@ function home() {
                         </div>
                     ))}
                 </div>
-                <div className='py-3 bottom-0'>
+                {/* <div className='py-3 bottom-0'>
                     <button className='py-2.5 px-5 rounded bg-slate-200 text-zinc-700' onClick={MorePosts}>表示</button>
-                </div>
+                </div> */}
 
             </div>
         </div>

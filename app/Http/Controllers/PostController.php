@@ -103,7 +103,7 @@ class PostController extends Controller
             'body' => 'required',
         ]);
         Storage::disk('public')->delete('images/' . $post->photo);
-        
+
         $name = $request->file('photo')->getClientOriginalName();
         $fileName = time().'.'.$name;
         $request->file('photo')->storeAs('images/', $fileName, 'public');

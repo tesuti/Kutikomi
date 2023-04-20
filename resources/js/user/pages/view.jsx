@@ -54,7 +54,7 @@ const login = () =>{
             <div className=" container  max-w-4xl mx-auto p-0 sm:py-36 px-2" >
         <div>
             {inputs.photo != null ?<>
-        <img src={ "http://127.0.0.1:5173/storage/app/public/images/" +inputs.photo}  alt={inputs.photo} className="rounded-t-lg object-cover sm:w-full pt-6  aspect-video object-cover"/>
+        <img src={  "http://127.0.0.1:5173/storage/app/public/images/" +inputs.photo}  alt={inputs.photo} className="rounded-t-lg object-cover sm:w-full pt-6  aspect-video "/>
         <section className="pt-4">
             <div>
                 <p className="break-all whitespace-pre-wrap ">{ inputs.title }</p>
@@ -133,3 +133,4 @@ const login = () =>{
 
     )
 }
+

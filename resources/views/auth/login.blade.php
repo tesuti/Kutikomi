@@ -1,12 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container">
     <div class="row justify-content-center">
+
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('ログイン') }}</div>
-
+                <div>
+                    <p>テストアカウント</p>
+                    <p>メールアドレス：test@test.com</p>
+                    <p>パスワード：test5321</p>
+                </div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf

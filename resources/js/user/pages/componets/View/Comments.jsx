@@ -92,7 +92,6 @@ const  Comments = () => {
                 )
             })}
             <p className='break-all  whitespace-pre-wrap'>{ commentField.comment}</p>
-            {/* <p>{moment( commentField.created_at).fromNow()}</p> */}
 
         </div>
     {userdetail.id == commentField.user_id ?
