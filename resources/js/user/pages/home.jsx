@@ -9,7 +9,7 @@ function home() {
     const [search, setSearch] = useState();
     const [visible, setVisible] = useState(12);
     const userdetail =useContext(LoginUser);
-
+//
     const MorePosts= () =>{
         setVisible((visible) => visible + 4);
     }
