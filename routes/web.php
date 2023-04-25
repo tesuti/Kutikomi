@@ -73,6 +73,7 @@ Route::resource('post',Controllers\PostController::class);
 Route::post('/posts',[Controllers\PostController::class,'index']);
 
 Route::resource('comment',Controllers\CommentController::class);
+Route::resource('like',Controllers\LikeController::class);
 
 
 

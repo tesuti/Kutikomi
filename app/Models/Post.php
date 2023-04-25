@@ -23,4 +23,9 @@ class Post extends Model
         return $this->hasMany(Comment::class,'post_id', 'id')->whereNull('parent_id');
     }
 
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
+
 }

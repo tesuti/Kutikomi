@@ -8,6 +8,7 @@ function home() {
     const [posts, setPosts] = useState([]);
     const [search, setSearch] = useState();
     const [visible, setVisible] = useState(12);
+    const [like, setLike] = useState(false);
     const userdetail =useContext(LoginUser);
 
     const MorePosts= () =>{
@@ -21,12 +22,46 @@ function home() {
     const data = {
         search:search,
     };
+    const likeData = {
+        userdetail:userdetail,
+        like:like,
+
+    };
+
 
     const fetchAllPost = async() =>{
             await axios.post('/posts',data).then(res=>{
                     setPosts(res.data);
             })
     }
+
+//     const Like = async(e) =>{
+//         e.preventDefault();
+//         await axios.post('/like',likeData).then(res=>{
+//             console.log(likeData);
+//             window.location.reload();
+//         })
+// }
+//     const UnLike = async(e) =>{
+//         e.preventDefault();
+//         await axios.post('/like',unlike).then(res=>{
+//             window.location.reload();
+//         })
+// }
+
+const handleLikeClick = async () => {
+    try {
+      if (like) {
+        await axios.delete('/like',unlike);
+        setBookmarked(false);
+      } else {
+        await axios.post(`/api/bookmarks`, { article_id: articleId });
+        setBookmarked(true);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
     const reload = () =>{
         window.location.reload();
@@ -62,8 +97,14 @@ function home() {
                                     <p className='truncate text-sm font-normal text-gray-600'>{ posts.body}</p>
                                 </div>
                             </Link>
-                            </> : <>
+                                {12 == 12 && 41 == posts.id ? <>
+                                    <button >いいねを取り消す</button>
+                                </> : <>
+                                    <button
+                                    onChange={(e) => setLike(posts.id)}
+                                    onClick={Like}>♡</button></>}
 
+                            </> : <>
                             <Link to={{ pathname :"/view/"+posts.id }}>
                                 <div className='mb-1.5'>
                                     <img src={ "http://127.0.0.1:5173/storage/app/public/images/"+posts.photo}  alt={posts.photo}  className='rounded-xl aspect-video object-cover'/>
@@ -73,6 +114,13 @@ function home() {
                                     <p className='truncate text-sm font-normal text-gray-600'>{ posts.body}</p>
                                 </div>
                             </Link>
+                            {/* {like.user_id == userdetail ? <>
+        <button >いいねを取り消す</button>
+      </> : <>
+        <button >♡</button></>} */}
+            <button onClick={handleLikeClick}>
+      {like ? 'Remove bookmark' : 'Bookmark'}
+    </button>
                             </> }
 
                         </div>
