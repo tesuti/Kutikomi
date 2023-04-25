@@ -60,6 +60,7 @@ function home() {
                                 <div className=''>
                                     <h3 className='text-base home__posts-body break-all  font-normal '>{ posts.title}</h3>
                                     <p className='truncate text-sm font-normal text-gray-600'>{ posts.body}</p>
+                                    <p className='truncate text-sm font-normal text-gray-600'>{ posts.user.name}</p>
                                 </div>
                             </Link>
                             </> : <>
