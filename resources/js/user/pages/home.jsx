@@ -7,7 +7,7 @@ import { LoginUser } from '../../User';
 function home() {
     const [posts, setPosts] = useState([]);
     const [search, setSearch] = useState();
-    const [visible, setVisible] = useState(12);
+    const [visible, setVisible] = useState(13);
     const userdetail =useContext(LoginUser);
 //////
     const MorePosts= () =>{
@@ -37,7 +37,7 @@ function home() {
 <div className=' w-h  auto-mt'>
             <div className=" container  max-w-5xl mx-auto p-0 sm:py-36 px-2" >
                 <div className='flex pt-3'>
-                    <input type="search" name='comment' className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
+                    {/* <input type="search" name='comment' className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
                     placeholder='検索'
                         value={search || ''}
                         onChange={(e) => setSearch(e.target.value)}
@@ -46,7 +46,7 @@ function home() {
                         <button type='button' className="text-white  bg-slate-300 hover:bg-slate-200 focus:ring- focus:outline-none focus:ring-blue-300 rounded-lg text-sm px-4 py-2.5 text-center" onClick={reload} >
                             <div className="text-xl">
                             <HiArrowPath /></div>
-                        </button>
+                        </button> */}
                 </div>
                 <div className='pt-3 grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-6'>
                     {posts.slice(0,visible).map((posts, i)=>(
@@ -62,6 +62,7 @@ function home() {
                                     <p className='truncate text-sm font-normal text-gray-600'>{ posts.body}</p>
                                     <p className='truncate text-sm font-normal text-gray-600'>{ posts.user.name}</p>
                                 </div>
+
                             </Link>
                             </> : <>
                             <Link to={{ pathname :"/view/"+posts.id }}>
@@ -78,9 +79,15 @@ function home() {
                         </div>
                     ))}
                 </div>
-                <div className='py-3 bottom-0'>
+                {/* <div className='py-3 bottom-0'>
                     <button className='py-2.5 px-5 rounded bg-slate-200 text-zinc-700' onClick={MorePosts}>表示</button>
-                </div>
+                </div> */}
+
+                    <Link to={{ pathname :"/sa/post" }} >
+                    <div className=' float-right sticky bottom-11 right-0 text-center text-3xl cursor-pointer text-white h-10  w-10 rounded-full bg-blue-500 hover:bg-blue-400'>
+                        <button>+</button>
+                        </div>
+                    </Link>
 
             </div>
         </div>

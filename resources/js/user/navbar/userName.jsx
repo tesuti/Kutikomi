@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useContext, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { LoginUser } from '../../User';
 
 
@@ -54,6 +54,13 @@ window.addEventListener('click',(e)=>{
             <li onClick={() => setOpen(false)} className=
                 'p-2 text-lg' >
                 <p className="text-gray-800 duration-500">{userdetail.name}</p>
+            </li>
+            <li onClick={() => setOpen(false)} className=
+                'p-2 text-lg' >
+                <Link  to="/sa/profile">
+                    <p className="text-gray-800 duration-500" >プロファイル</p>
+                </Link>
+
             </li>
             <li onClick={() => setOpen(false)} className=
                 '' >

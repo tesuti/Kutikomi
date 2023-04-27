@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -57,6 +58,7 @@ class PostController extends Controller
         $test = new Post;
         $test->title = $request->title;
         $test->body = $request->body;
+        $test->user_id = Auth::id();
 
         $test->photo = $fileName;
 
@@ -103,7 +105,7 @@ class PostController extends Controller
             'body' => 'required',
         ]);
         Storage::disk('public')->delete('images/' . $post->photo);
-        
+
         $name = $request->file('photo')->getClientOriginalName();
         $fileName = time().'.'.$name;
         $request->file('photo')->storeAs('images/', $fileName, 'public');

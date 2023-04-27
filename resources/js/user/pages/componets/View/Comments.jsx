@@ -24,7 +24,7 @@ const  Comments = () => {
     const {id} = useParams();
 
     const ref = useRef();
-
+    console.log(commentField);
     useOutsideClick(ref, () => {
         if(openDelete) setOpenDelete(false);
         else if (sidebar) setSidebar(false);
