@@ -57,7 +57,7 @@ window.addEventListener('click',(e)=>{
             </li>
             <li onClick={() => setOpen(false)} className=
                 'p-2 text-lg' >
-                <Link  to="/sa/profile">
+                    <Link to={{ pathname :"/sa/profile"}}>
                     <p className="text-gray-800 duration-500" >プロファイル</p>
                 </Link>
 

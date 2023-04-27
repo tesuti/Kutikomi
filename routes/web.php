@@ -25,6 +25,9 @@ Route::get('/sa/view/{posts}', function () {
 Route::get('/sa/rating', function () {
     return view('welcome');
 });
+Route::get('/sa/profile', function () {
+    return view('welcome');
+});
 
 
 require __DIR__.'/auth.php';
