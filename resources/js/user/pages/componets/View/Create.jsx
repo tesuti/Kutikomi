@@ -1,27 +1,26 @@
-import { useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FaStar } from 'react-icons/fa';
-
 import useOutsideClick from "./useOutsideClick";
+import { LoginUser } from "../../../../User";
+import { AllComment } from "../../view";
 
 const Create = () => {
-
+    const commentField = useContext(AllComment);
     const [comment, setComment] = useState("");
     const [rating, setRating] = useState("0");
 
     const [hover, setHover] = useState(null);
-
+const [upDate, setUpDate] = useState(false);
     const [error,setError]=useState(false);
-
+    const userdetail =useContext(LoginUser);
     let [createComment, setCreateComment]= useState(false);
     const {id} = useParams();
 
     const ref = useRef();
-
     useOutsideClick(ref, () => {
       if (createComment) setCreateComment(false);
     });
-
     const data = {
         comment: comment,
         rating: rating,
@@ -39,10 +38,23 @@ const Create = () => {
         })
     }
 
+const check = () =>{
+    for(let i =0; i<commentField.length; i++){
+        if(commentField[i].user_id === userdetail.id){
+            setUpDate(true);
+            return;
+        };
+    }
+}
   return (
     <>
-    <div className="">
-        <button  className='px-5 py-2.5 mb-7 text-center bg-slate-200  hover:bg-slate-300 rounded' onClick={() => setCreateComment(!createComment)}>コメント</button>
+    <div>
+
+    <div  onClick={check}>
+        <button  className='px-5 py-2.5 mb-7 text-center bg-slate-200  hover:bg-slate-300 rounded'
+            onClick={() => setCreateComment(!createComment)}>コメント</button>
+    </div>
+    {!upDate ? <>
     <div ref={ref}  className={`absolute z-30 bg-white p-4 rounded w-[300px] shadow-md
             ${createComment ? '':'hidden'}`}>
         <div  className="my-7">
@@ -86,9 +98,10 @@ const Create = () => {
         </div>
     </div>
         <span>
-            <button type='button' className="text-white bg-blue-700 hover:bg-blue-800 focus:ring- focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" onClick={submitForm}>コメント</button>
+        <button type='button' className="text-white bg-blue-700 hover:bg-blue-800 focus:ring- focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" onClick={submitForm}>コメント</button>
+
         </span>
-    </div>
+    </div></>:''}
     </div>
 
     </>

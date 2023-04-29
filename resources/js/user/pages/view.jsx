@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FaStar } from 'react-icons/fa';
 import './App.css';
@@ -7,6 +7,7 @@ import Comments from "./componets/View/Comments";
 import Create from "./componets/View/Create";
 import { LoginUser } from "../../User";
 
+export const AllComment = createContext();
 
 export default function View(){
 
@@ -117,7 +118,7 @@ const login = () =>{
         </div>
 
         {/* ログイン画面へ */}
-        {userdetail ? <Create /> : <div>
+        {userdetail ? <div><AllComment.Provider value={commentField}><Create /> </AllComment.Provider></div>: <div>
         <button  className='px-5 py-2.5 mb-7 text-center bg-slate-200  hover:bg-slate-300 rounded' onClick={login}>コメント</button>
         </div>     }
 

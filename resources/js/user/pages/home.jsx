@@ -28,8 +28,12 @@ function home() {
             })
     }
 
-    const reload = () =>{
-        window.location.reload();
+    // const reload = () =>{
+    //     window.location.reload();
+    // }
+
+    const login = () =>{
+        window.location.replace("/login")
     }
 
     return (
@@ -82,12 +86,18 @@ function home() {
                 {/* <div className='py-3 bottom-0'>
                     <button className='py-2.5 px-5 rounded bg-slate-200 text-zinc-700' onClick={MorePosts}>表示</button>
                 </div> */}
-
-                    <Link to={{ pathname :"/sa/post" }} >
+                
+                {/* 非ログインならばログイン画面へ進む */}
+                {userdetail ?  <Link to={{ pathname :"/sa/post" }} >
                     <div className=' float-right sticky bottom-11 right-0 text-center text-3xl cursor-pointer text-white h-10  w-10 rounded-full bg-blue-500 hover:bg-blue-400'>
                         <button>+</button>
                         </div>
-                    </Link>
+                    </Link>:
+                    <div className=' float-right sticky bottom-11 right-0 text-center text-3xl cursor-pointer text-white h-10  w-10 rounded-full bg-blue-500 hover:bg-blue-400'>
+                    <button onClick={login}>+</button>
+                    </div>
+                    }
+
 
             </div>
         </div>
