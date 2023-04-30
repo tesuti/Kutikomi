@@ -19,7 +19,11 @@ class PostController extends Controller
     {
         if($request->search){
             $post =  Post::where('title','like','%' .$request->search.'%')
-            ->orWhere('body', 'like','%' .$request->search.'%')->get();
+            ->orWhere('body', 'like','%' .$request->search.'%')
+            ->orWhere('id', 'like' ,'%' .$request->search.'%')
+            ->get();
+        }elseif($request->NoAsc){
+            $post = Post::with('comments')->orderBy('created_at', 'ASC')->get();
         }else{
             $post = Post::with('comments')->orderBy('created_at', 'DESC')->get();
         }
@@ -113,8 +117,9 @@ class PostController extends Controller
         $post->photo = $fileName;
         $post->title = $request->title;
         $post->body = $request->body;
-        $post->update();
+        $post->user_id = Auth::id();
 
+        $post->update();
 
         return response()->json('success');
     }
@@ -133,4 +138,11 @@ class PostController extends Controller
         $post->whereId($id)->delete();
         return response()->json('success');
     }
+
+    public function submitPost(Request $request){
+        $post = Post::
+        where('user_id', '=', Auth::user()->id)
+        ->get();
+        return response()->json($post);
+            }
 }

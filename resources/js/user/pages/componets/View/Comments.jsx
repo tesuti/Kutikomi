@@ -16,8 +16,10 @@ const  Comments = () => {
 
     const [popup, setPopup] = useState("");
     let [sidebar, setSidebar]= useState(false);
+
     let [openEdit, setOpenEdit]= useState(false);
     let [openDelete, setOpenDelete]= useState(false);
+
     const [error,setError]=useState(false);
     const [hover, setHover] = useState(null);
 

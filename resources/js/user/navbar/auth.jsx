@@ -4,6 +4,7 @@ import { Routes, Route, Link } from 'react-router-dom';
 import Home from '../pages/home';
 import Rating from '../pages/rating';
 import View from '../pages/view'
+import Edit from '../pages/edit'
 import Profile from '../pages/profile'
 import UserName from './userName';
 import { HiBars3,HiXMark } from "react-icons/hi2";
@@ -61,6 +62,7 @@ function Auth() {
                     <Route path="/sa/post" element={<CreatePost />} />
                     <Route path="/sa/profile" element={<Profile />} />
                     <Route path='/sa/view/:id' element={<View />} />
+                    <Route path='/sa/profile/edit/:id' element={<Edit />} />
                 </Routes>
             </div>
         </div>

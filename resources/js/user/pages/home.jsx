@@ -64,7 +64,7 @@ function home() {
                                 <div className=''>
                                     <h3 className='text-base home__posts-body break-all  font-normal '>{ posts.title}</h3>
                                     <p className='truncate text-sm font-normal text-gray-600'>{ posts.body}</p>
-                                    <p className='truncate text-sm font-normal text-gray-600'>{ posts.user.name}</p>
+                                    <p className='truncate text-sm font-normal text-gray-600 text-right mr-3.5'>{ posts.user.name}</p>
                                 </div>
 
                             </Link>
@@ -86,7 +86,7 @@ function home() {
                 {/* <div className='py-3 bottom-0'>
                     <button className='py-2.5 px-5 rounded bg-slate-200 text-zinc-700' onClick={MorePosts}>表示</button>
                 </div> */}
-                
+
                 {/* 非ログインならばログイン画面へ進む */}
                 {userdetail ?  <Link to={{ pathname :"/sa/post" }} >
                     <div className=' float-right sticky bottom-11 right-0 text-center text-3xl cursor-pointer text-white h-10  w-10 rounded-full bg-blue-500 hover:bg-blue-400'>

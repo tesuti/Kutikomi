@@ -28,6 +28,9 @@ Route::get('/sa/rating', function () {
 Route::get('/sa/profile', function () {
     return view('welcome');
 });
+Route::get('/sa/profile/edit/{posts}', function () {
+    return view('welcome');
+});
 
 
 require __DIR__.'/auth.php';
@@ -74,6 +77,7 @@ Route::get('admin/me', [AdminController::class,'me'])->middleware(['auth:admin']
 
 Route::resource('post',Controllers\PostController::class);
 Route::post('/posts',[Controllers\PostController::class,'index']);
+Route::get('/submitPost',[Controllers\PostController::class,'submitPost']);
 
 Route::resource('comment',Controllers\CommentController::class);
 
