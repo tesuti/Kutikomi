@@ -59,7 +59,7 @@ function rating() {
                 　{ posts.comment_avg}
                 <h3 className='text-xl text-slate-700 mb-3 truncate'>{ posts.posts.title}</h3>
                 <h3 className='text-xl text-slate-700 truncate'>{ posts.posts.body}</h3>
-                <h3 className='text-xl text-slate-700 truncate'>{ posts.posts.user_id}</h3>
+                <h3 className='text-xl text-slate-700 truncate'>{ posts.posts.user.name}</h3>
                 </div>
                 </div>
             </Link>

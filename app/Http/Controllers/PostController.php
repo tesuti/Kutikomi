@@ -22,8 +22,6 @@ class PostController extends Controller
             ->orWhere('body', 'like','%' .$request->search.'%')
             ->orWhere('id', 'like' ,'%' .$request->search.'%')
             ->get();
-        }elseif($request->NoAsc){
-            $post = Post::with('comments')->orderBy('created_at', 'ASC')->get();
         }else{
             $post = Post::with('comments')->orderBy('created_at', 'DESC')->get();
         }
