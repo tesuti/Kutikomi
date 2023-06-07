@@ -73,13 +73,13 @@ function Auth() {
        {
         open &&(
           <div ref={menuRef} >
-        <div className="bg-white p-4 w-52 shadow-lg  -left-14 top-12 rounded-lg">
+        <div className="bg-white p-3 w-80 shadow-lg  -left-14 top-12 rounded-lg">
           <ul>
             {posts.slice(0,visible).map((posts, i)=>(
                 <div onClick={reload}>
                 <Link to={{ pathname :"/sa/view/"+posts.id }}>
                     <li onClick={() => setOpen(false)} className=
-                    'p-2 text-lg cursor-pointer rounded hover:bg-blue-100' >
+                    'p- text-lg cursor-pointer rounded hover:bg-blue-100' >
                     <button
                         className="text-lg cursor-pointer rounded hover:bg-blue-100 text-gray-800 hover:text-gray-400 duration-500 pl-2 pr-12 py-2">{posts.title}
                     </button>

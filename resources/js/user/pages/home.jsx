@@ -79,11 +79,11 @@ function home() {
 
                 {/* 非ログインならばログイン画面へ進む */}
                 {userdetail ?  <Link to={{ pathname :"/sa/post" }} >
-                    <div className=' float-right sticky bottom-11 right-0 text-center text-3xl cursor-pointer text-white h-10  w-10 rounded-full bg-blue-500 hover:bg-blue-400'>
+                    <div className=' float-right fixed bottom-11 right-1/4	 text-center text-3xl cursor-pointer text-white h-10  w-10 rounded-full bg-blue-500 hover:bg-blue-400'>
                         <button>+</button>
                         </div>
                     </Link>:
-                    <div className=' float-right sticky bottom-11 right-0 text-center text-3xl cursor-pointer text-white h-10  w-10 rounded-full bg-blue-500 hover:bg-blue-400'>
+                    <div className=' float-right fixed bottom-11 right-1/4	 text-center text-3xl cursor-pointer text-white h-10  w-10 rounded-full bg-blue-500 hover:bg-blue-400'>
                     <button onClick={login}>+</button>
                     </div>
                     }
