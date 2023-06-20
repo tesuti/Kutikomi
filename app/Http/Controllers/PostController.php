@@ -23,7 +23,7 @@ class PostController extends Controller
             ->orWhere('id', 'like' ,'%' .$request->search.'%')
             ->get();
         }else{
-            $post = Post::with('comments')->orderBy('created_at', 'DESC')->get();
+            $post = Post::inRandomOrder()->get();
         }
         return response()->json($post);
 
@@ -53,6 +53,7 @@ class PostController extends Controller
             'title' => 'required',
             'body' => 'required',
         ]);
+
         $name = $request->file('photo')->getClientOriginalName();
         $fileName = time().'.'.$name;
         $request->file('photo')->storeAs('images/', $fileName, 'public');
@@ -137,6 +138,7 @@ class PostController extends Controller
         return response()->json('success');
     }
 
+    //プロファイルに記事を表示する
     public function submitPost(Request $request){
         $post = Post::
         where('user_id', '=', Auth::user()->id)

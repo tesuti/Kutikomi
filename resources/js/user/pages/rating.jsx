@@ -99,9 +99,9 @@ function rating() {
 </>))}
 
         </div>
-        <div className='py-3'>
+        {/* <div className='py-3'>
             <button className='py-2.5 px-5 rounded bg-slate-200 text-zinc-700' onClick={MorePosts}>表示</button>
-        </div>
+        </div> */}
       </div>
       </div>
     )
